@@ -53,7 +53,7 @@ function showCorrectLoginDiv() {
     }
 }
 function showDiv(divName) {
-    navigator.notification.vibrate(500);
+    navigator.notification.vibrate(250);
     hideAllDivs();
     $('#' + divName).removeAttr('style');
     //call backs for divs
