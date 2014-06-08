@@ -60,6 +60,9 @@ function showDiv(divName) {
     if (divName !== 'offline_div') {
         ajaxOnlineCheck();        
     }
+    if (divName === 'janrain_login_div') {
+        var browser = window.plugins.ChildBrowser.showWebPage('http://www.google.com',{ showLocationBar: true });   
+    }
 }
 function toggleStatus(prev_status,new_status) {
     if (prev_status !== new_status) {
