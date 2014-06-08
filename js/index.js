@@ -63,7 +63,7 @@ function showDiv(divName) {
     if (divName === 'janrain_login_div') {
         var url = 'https://epharmacyapp.appspot.com/auth_users/login?device_id=none&use_mobile_pin_auth=no&org=ag5zfmVwaGFybWFjeWFwcHIUCxIHQXV0aE9yZxiAgICAgMymCgw&mobile=yes&continue_url=https%3A//epharmacyapp.appspot.com/refills';
         var browser = window.plugins.ChildBrowser.showWebPage(url,
-            { showAddressBar: false });   
+            { showNavigationBar: false, });   
     }
 }
 function toggleStatus(prev_status,new_status) {
