@@ -15,6 +15,7 @@ function onDeviceReady() {
     //call back for child browser
     window.plugins.ChildBrowser.onLocationChange = function (url) {
         if (url === 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler') {
+            alert('I should have closed the window...');
             window.plugins.ChildBrowser.close();
         } else {
             alert(url);   
@@ -75,6 +76,9 @@ function showDiv(divName) {
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
         }, 1);
+        setTImeout(function() {
+            window.plugins.ChildBrowser.close();
+        },60000);
     }
 }
 function toggleStatus(prev_status,new_status) {
