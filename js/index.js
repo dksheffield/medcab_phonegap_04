@@ -84,7 +84,10 @@ function showDiv(divName) {
             //};
         }, 3000);
         */
-        setTimeout(function() {window.plugins.ChildBrowser.close()}, 5000);
+        setTimeout(function() {
+            alert('Test Alert');
+            window.plugins.ChildBrowser.close();
+        }, 5000);
     }
 }
 function toggleStatus(prev_status,new_status) {
