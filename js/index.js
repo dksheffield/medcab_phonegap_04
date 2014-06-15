@@ -76,7 +76,7 @@ function showDiv(divName) {
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
         }, 1);
-        setTImeout(function() {
+        setTimeout(function() {
             window.plugins.ChildBrowser.close();
         },60000);
     }
