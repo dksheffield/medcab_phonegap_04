@@ -13,9 +13,9 @@ function onDeviceReady() {
     $('#uuid').html(device.uuid);
     //setInterval(function(){ajaxOnlineCheck()}, 30000);
     //call back for child browser
-    window.plugins.childBrowser.onLocationChange = function (url) {
-        window.plugins.childBrowser.close();
-    };
+    //window.plugins.childBrowser.onLocationChange = function (url) {
+    //    window.plugins.childBrowser.close();
+    //};
     
     
 }
@@ -72,10 +72,11 @@ function showDiv(divName) {
             var browser = window.plugins.ChildBrowser.showWebPage(url,
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
-            browser.onLocationChange = function (url) {
-                console.log('childBrowser has loaded ' + url);
-                alert('childBrowser has loaded ' + url);
-            };
+            window.plugins.childBrowser.close();
+            //browser.onLocationChange = function (url) {
+            //    console.log('childBrowser has loaded ' + url);
+            //    alert('childBrowser has loaded ' + url);
+            //};
         }, 3000);
     }
 }
