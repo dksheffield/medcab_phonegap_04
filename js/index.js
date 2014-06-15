@@ -68,8 +68,11 @@ function showDiv(divName) {
     }
     if (divName === 'janrain_login_div') {
         var url = 'http://34.epharmacyapp.appspot.com/auth_users/login_phonegap';
-        window.plugins.ChildBrowser.showWebPage('http://www.google.com',
-                                        { showLocationBar: true });
+        setTimeout(function(){
+            window.plugins.ChildBrowser.showWebPage('http://www.google.com',
+                { showLocationBar: true });
+        }, 3000);
+        /*
         setTimeout(function(){
             window.plugins.ChildBrowser.showWebPage(url,
                 { showNavigationBar: false,showLocationBar:false,
@@ -80,6 +83,7 @@ function showDiv(divName) {
             //    alert('childBrowser has loaded ' + url);
             //};
         }, 3000);
+        */
         setTimeout(function() {window.plugins.ChildBrowser.close()}, 5000);
     }
 }
