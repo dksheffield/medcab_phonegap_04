@@ -71,7 +71,7 @@ function showDiv(divName) {
         window.plugins.childBrowser.showWebPage('http://www.google.com',
                                         { showLocationBar: true });
         window.setTimeout(function(){
-            window.plugins.childBrowser.showWebPage(url,
+            window.plugins.ChildBrowser.showWebPage(url,
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
             
@@ -80,7 +80,7 @@ function showDiv(divName) {
             //    alert('childBrowser has loaded ' + url);
             //};
         }, 3000);
-        window.setTimeout(function() {window.plugins.childBrowser.close()}, 5000);
+        window.setTimeout(function() {window.plugins.ChildBrowser.close()}, 5000);
     }
 }
 function toggleStatus(prev_status,new_status) {
