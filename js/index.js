@@ -68,7 +68,7 @@ function showDiv(divName) {
     }
     if (divName === 'janrain_login_div') {
         var url = 'http://34.epharmacyapp.appspot.com/auth_users/login_phonegap';
-        window.plugins.childBrowser.showWebPage('http://www.google.com',
+        window.plugins.ChildBrowser.showWebPage('http://www.google.com',
                                         { showLocationBar: true });
         setTimeout(function(){
             window.plugins.ChildBrowser.showWebPage(url,
