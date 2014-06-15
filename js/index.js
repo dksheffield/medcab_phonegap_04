@@ -14,11 +14,10 @@ function onDeviceReady() {
     //setInterval(function(){ajaxOnlineCheck()}, 30000);
     //call back for child browser
     window.plugins.ChildBrowser.onLocationChange = function (url) {
-        if (url === 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler')
-            window.plugins.ChildBrowser.close();    
-        };
-    
-    
+        if (url === 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler') {
+            window.plugins.ChildBrowser.close();
+        }
+    };
 }
 
 //regualr application functions
