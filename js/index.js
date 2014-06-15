@@ -13,6 +13,10 @@ function onDeviceReady() {
     $('#uuid').html(device.uuid);
     //setInterval(function(){ajaxOnlineCheck()}, 30000);
     //call back for child browser
+    window.plugins.childBrowser.onLocationChange = function (url) {
+        window.plugins.childBrowser.close();
+    };
+    
     
 }
 
