@@ -72,12 +72,13 @@ function showDiv(divName) {
             var browser = window.plugins.ChildBrowser.showWebPage(url,
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
-            window.plugins.childBrowser.close();
+            
             //browser.onLocationChange = function (url) {
             //    console.log('childBrowser has loaded ' + url);
             //    alert('childBrowser has loaded ' + url);
             //};
         }, 3000);
+        setTimeout(function() {window.plugins.childBrowser.close()}, 5000);
     }
 }
 function toggleStatus(prev_status,new_status) {
