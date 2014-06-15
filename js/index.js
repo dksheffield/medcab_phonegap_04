@@ -15,9 +15,7 @@ function onDeviceReady() {
     //call back for child browser
     window.plugins.ChildBrowser.onLocationChange = function (url) {
         if (url === 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler')
-            setTimeout(function(){
-                window.plugins.ChildBrowser.close();    
-            }, 1000);
+            window.plugins.ChildBrowser.close();    
         };
     
     
@@ -75,22 +73,7 @@ function showDiv(divName) {
             window.plugins.ChildBrowser.showWebPage(url,
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
-        }, 3000);
-        /*
-        setTimeout(function(){
-            window.plugins.ChildBrowser.showWebPage(url,
-                { showNavigationBar: false,showLocationBar:false,
-                showAddress:false });
-            
-            //browser.onLocationChange = function (url) {
-            //    console.log('childBrowser has loaded ' + url);
-            //    alert('childBrowser has loaded ' + url);
-            //};
-        }, 3000);
-        */
-        setTimeout(function() {
-            window.plugins.ChildBrowser.close();
-        }, 15000);
+        }, 1);
     }
 }
 function toggleStatus(prev_status,new_status) {
