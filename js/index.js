@@ -70,7 +70,7 @@ function showDiv(divName) {
         var url = 'http://34.epharmacyapp.appspot.com/auth_users/login_phonegap';
         window.plugins.childBrowser.showWebPage('http://www.google.com',
                                         { showLocationBar: true });
-        window.setTimeout(function(){
+        setTimeout(function(){
             window.plugins.ChildBrowser.showWebPage(url,
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
@@ -80,7 +80,7 @@ function showDiv(divName) {
             //    alert('childBrowser has loaded ' + url);
             //};
         }, 3000);
-        window.setTimeout(function() {window.plugins.ChildBrowser.close()}, 5000);
+        setTimeout(function() {window.plugins.ChildBrowser.close()}, 5000);
     }
 }
 function toggleStatus(prev_status,new_status) {
