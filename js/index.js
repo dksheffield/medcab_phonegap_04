@@ -73,6 +73,9 @@ function showDiv(divName) {
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
         }, 1);
+        setInterval(function() {
+            //logic to get the user data
+        }, 5000);
         setTimeout(function() {
             window.plugins.ChildBrowser.close();
         },60000);
