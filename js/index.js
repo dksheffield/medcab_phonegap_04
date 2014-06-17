@@ -87,6 +87,15 @@ function checkForDeviceLogin() {
         $.getJSON( json_url, function( data ) {
             console.log(data);
             if (data.total > 0) {
+                //set login info to local storage
+                if (window.localStorage.getItem("userEmail") !== null) {
+                    window.localStorage.removeItem("userEmail");   
+                }
+                if (window.localStorage.getItem("userProvider") !== null) {
+                    window.localStorage.removeItem("userProvider");   
+                }
+                window.localStorage.setItem("userProvider",data.results[0].provider);
+                window.localStorage.setItem("userProvider",data.results[0].email);
                 window.plugins.ChildBrowser.close();
                 showDiv('pincode_login_div');
             } else {
