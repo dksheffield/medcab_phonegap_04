@@ -31,6 +31,29 @@ function ajaxOnlineCheck() {
         showDiv('offline_div');
     });
 }
+function checkForDeviceLogin() {
+    var json_url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler_json?device_id=' + device.uuid;
+    setTimeout(function() {
+        $.getJSON( json_url, function( data ) {
+            console.log(data);
+            if (data.total > 0) {
+                //set login info to local storage
+                if (window.localStorage.getItem("userEmail")) {
+                    window.localStorage.removeItem("userEmail");   
+                }
+                if (window.localStorage.getItem("userProvider")) {
+                    window.localStorage.removeItem("userProvider");   
+                }
+                window.localStorage.setItem("userProvider",data.results[0].provider);
+                window.localStorage.setItem("userEmail",data.results[0].email);
+                window.plugins.ChildBrowser.close();
+                showDiv('pincode_login_div');
+            } else {
+                checkForDeviceLogin();   
+            }
+        });
+    },1000);
+}
 function clearStorage() {
     console.log('clearing storage');   
 }
@@ -79,33 +102,11 @@ function showDiv(divName) {
         if (window.localStorage.getItem("userPin")) {
             alert('Pin is set');
         } else {
-            alert('Pin is not sets');   
+            showDiv('pincode_setup_div');   
         }
     }
 }
-function checkForDeviceLogin() {
-    var json_url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler_json?device_id=' + device.uuid;
-    setTimeout(function() {
-        $.getJSON( json_url, function( data ) {
-            console.log(data);
-            if (data.total > 0) {
-                //set login info to local storage
-                if (window.localStorage.getItem("userEmail") !== null) {
-                    window.localStorage.removeItem("userEmail");   
-                }
-                if (window.localStorage.getItem("userProvider") !== null) {
-                    window.localStorage.removeItem("userProvider");   
-                }
-                window.localStorage.setItem("userProvider",data.results[0].provider);
-                window.localStorage.setItem("userEmail",data.results[0].email);
-                window.plugins.ChildBrowser.close();
-                showDiv('pincode_login_div');
-            } else {
-                checkForDeviceLogin();   
-            }
-        });
-    },1000);
-}
+
 function toggleStatus(prev_status,new_status) {
     if (prev_status !== new_status) {
         $('#local_storage_div').attr('data-network-status',new_status);
