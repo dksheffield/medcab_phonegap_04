@@ -73,13 +73,23 @@ function showDiv(divName) {
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
         }, 1);
-        setInterval(function() {
-            //logic to get the user data
-        }, 5000);
+        checkForDeviceLogin();
         setTimeout(function() {
             window.plugins.ChildBrowser.close();
         },60000);
     }
+}
+function checkForDeviceLogin() {
+    var json_url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler_json?device_id=' + device.uuid;
+    $.getJSON( json_url, function( data ) {
+        console.log(data);
+        if (data.total > 0) {
+            window.plugins.ChildBrowser.close();
+            showDiv(pincode_login_div);
+        } else {
+            checkForDeviceLogin();   
+        }
+    });
 }
 function toggleStatus(prev_status,new_status) {
     if (prev_status !== new_status) {
