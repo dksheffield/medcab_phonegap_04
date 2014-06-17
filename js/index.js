@@ -74,11 +74,13 @@ function showDiv(divName) {
                 showAddress:false });
         }, 1);
         checkForDeviceLogin();
-        /*
-        setTimeout(function() {
-            window.plugins.ChildBrowser.close();
-        },60000);
-        */
+    }
+    if (divName === 'pincode_login_div') {
+        if (window.localStorage.getItem("userPin")) {
+            alert('Pin is set');
+        } else {
+            alert('Pin is not sets');   
+        }
     }
 }
 function checkForDeviceLogin() {
