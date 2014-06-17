@@ -95,7 +95,7 @@ function checkForDeviceLogin() {
                     window.localStorage.removeItem("userProvider");   
                 }
                 window.localStorage.setItem("userProvider",data.results[0].provider);
-                window.localStorage.setItem("userProvider",data.results[0].email);
+                window.localStorage.setItem("userEmail",data.results[0].email);
                 window.plugins.ChildBrowser.close();
                 showDiv('pincode_login_div');
             } else {
