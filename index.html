@@ -115,13 +115,23 @@
         
         <div id="pincode_setup_div" style="display: none;">
             <h3>Please create a Pin Code:</h3>
-            Create...
+            <form role="form">
+              <div class="form-group">
+                <label for="createPin1">Create Pin</label>
+                <input type="number" class="form-control" id="createPin1" pattern="[0-9]{4}[0-9]*">
+              </div>
+              <div class="form-group">
+                <label for="createPin2">Confirm Pin</label>
+                <input type="number" class="form-control" id="createPin2">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
         </div><!-- /janrain login div -->
         
         <hr />
         <div id="uuid">Default</div>
         <br />
-        <div id="version">v47</div>
+        <div id="version">v48</div>
         <br />
         <a onclick="clearStorage();">Clear Local Storage</a>
         <br />
