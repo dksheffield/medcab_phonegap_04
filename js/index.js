@@ -88,7 +88,7 @@ function checkForDeviceLogin() {
             console.log(data);
             if (data.total > 0) {
                 window.plugins.ChildBrowser.close();
-                showDiv(pincode_login_div);
+                showDiv('pincode_login_div');
             } else {
                 checkForDeviceLogin();   
             }
