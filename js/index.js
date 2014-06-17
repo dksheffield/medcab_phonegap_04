@@ -85,6 +85,7 @@ function checkForDeviceLogin() {
     var json_url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler_json?device_id=' + device.uuid;
     setTimeout(function() {
         $.getJSON( json_url, function( data ) {
+            alert(data);
             console.log(data);
             if (data.total > 0) {
                 window.plugins.ChildBrowser.close();
