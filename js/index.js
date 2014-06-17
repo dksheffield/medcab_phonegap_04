@@ -67,7 +67,6 @@ function showDiv(divName) {
         ajaxOnlineCheck();        
     }
     if (divName === 'janrain_login_div') {
-        /*
         var url = 'http://34.epharmacyapp.appspot.com/auth_users/login_phonegap?continue_url=/auth_users/phonegap_handler?device_id=' + device.uuid;
         setTimeout(function(){
             window.plugins.ChildBrowser.showWebPage(url,
@@ -75,6 +74,7 @@ function showDiv(divName) {
                 showAddress:false });
         }, 1);
         checkForDeviceLogin();
+        /*
         setTimeout(function() {
             window.plugins.ChildBrowser.close();
         },60000);
