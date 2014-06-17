@@ -67,6 +67,7 @@ function showDiv(divName) {
         ajaxOnlineCheck();        
     }
     if (divName === 'janrain_login_div') {
+        /*
         var url = 'http://34.epharmacyapp.appspot.com/auth_users/login_phonegap?continue_url=/auth_users/phonegap_handler?device_id=' + device.uuid;
         setTimeout(function(){
             window.plugins.ChildBrowser.showWebPage(url,
@@ -77,19 +78,22 @@ function showDiv(divName) {
         setTimeout(function() {
             window.plugins.ChildBrowser.close();
         },60000);
+        */
     }
 }
 function checkForDeviceLogin() {
     var json_url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler_json?device_id=' + device.uuid;
-    $.getJSON( json_url, function( data ) {
-        console.log(data);
-        if (data.total > 0) {
-            window.plugins.ChildBrowser.close();
-            showDiv(pincode_login_div);
-        } else {
-            checkForDeviceLogin();   
-        }
-    });
+    setTimeout(function() {
+        $.getJSON( json_url, function( data ) {
+            console.log(data);
+            if (data.total > 0) {
+                window.plugins.ChildBrowser.close();
+                showDiv(pincode_login_div);
+            } else {
+                checkForDeviceLogin();   
+            }
+        });
+    },1000);
 }
 function toggleStatus(prev_status,new_status) {
     if (prev_status !== new_status) {
