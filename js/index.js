@@ -19,7 +19,7 @@ function onDeviceReady() {
         }
     };
     //form validation
-    $('create_pin_form').h5Validate();
+    $('#create_pin_form').h5Validate();
 }
 
 //regualr application functions
