@@ -20,6 +20,8 @@ function onDeviceReady() {
     };
     //form validation
     $('#create_pin_form').h5Validate();
+    //listeners
+    listenerForCreatePinForm();
 }
 
 //regualr application functions
