@@ -19,7 +19,7 @@ function onDeviceReady() {
         }
     };
     //form validation
-    $('#create_pin_form').h5Validate();
+    //$('#create_pin_form').h5Validate();
     //listeners
     listenerForCreatePinForm();
 }
@@ -82,9 +82,8 @@ function listenerForCreatePinForm() {
     var create_pin = $('#create_pin_form');
     create_pin.on('submit', function(ev){
 	    ev.preventDefault();
+	    console.log(validateRequired('createPin1'));
 	    console.log('trying to submit form');
-	    $( ".ui-state-error" ).addClass( 'has-error' );
-	    console.log('tried to apply validation');
     });
 }
 function showCorrectLoginDiv() {
