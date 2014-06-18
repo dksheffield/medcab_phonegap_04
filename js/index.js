@@ -18,6 +18,8 @@ function onDeviceReady() {
             window.plugins.ChildBrowser.close();
         }
     };
+    //form validation
+    $('create_pin_form').h5Validate();
 }
 
 //regualr application functions

@@ -118,10 +118,10 @@
         
         <div id="pincode_setup_div" style="display: none;">
             <h3>Please create a Pin Code:</h3>
-            <form role="form">
+            <form role="form" id="create_pin_form">
               <div class="form-group">
                 <label for="createPin1">Create Pin</label>
-                <input type="text" class="form-control" id="createPin1" pattern="[A-Za-z]{3}">
+                <input type="text" class="form-control" id="createPin1" pattern="[A-Za-z]{3}" required >
               </div>
               <div class="form-group">
                 <label for="createPin2">Confirm Pin</label>
@@ -134,7 +134,7 @@
         <hr />
         <div id="uuid">Default</div>
         <br />
-        <div id="version">v48</div>
+        <div id="version">v49</div>
         <br />
         <a onclick="clearStorage();">Clear Local Storage</a>
         <br />
