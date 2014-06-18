@@ -76,6 +76,15 @@ function isSessionActive() {
     }
     return sessionActive;
 }
+function listenerForCreatePinForm() {
+    var create_pin = $('#create_pin_form');
+    create_pin.on('submit', function(ev){
+	    ev.preventDefault();
+	    console.log('trying to submit form');
+	    $( ".ui-state-error" ).addClass( 'has-error' );
+	    console.log('tried to apply validation');
+    });
+}
 function showCorrectLoginDiv() {
     if (window.localStorage.getItem("userPinCode") === null) {
         showDiv('janrain_login_div');
