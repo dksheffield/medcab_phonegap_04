@@ -48,8 +48,12 @@ function checkForDeviceLogin() {
                 if (window.localStorage.getItem("userProvider")) {
                     window.localStorage.removeItem("userProvider");   
                 }
+                if (window.localStorage.getItem("user_identifier")) {
+                    window.localStorage.removeItem("user_identifier");   
+                }
                 window.localStorage.setItem("userProvider",data.results[0].provider);
                 window.localStorage.setItem("userEmail",data.results[0].email);
+                window.localStorage.setItem("user_identifier",data.results[0].user_identifier);
                 window.plugins.ChildBrowser.close();
                 showDiv('pincode_login_div');
             } else {
