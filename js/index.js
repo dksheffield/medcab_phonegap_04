@@ -73,6 +73,17 @@ function hideAllDivs() {
         $('#' + divs[x]).attr('style','display: none;');
     }
 }
+function isPinSet(str_device_id,str_user_identifier) {
+    var url = 'http://34.epharmacyapp.appspot.com/auth_users/is_pin_set';
+    var postData = {
+        device_id: str_device_id,
+        user_identifier:str_user_identifier,
+    };
+    $.post( url, postData, function( data ) {
+        console.log(data);
+        alert( "Data Loaded: " + data.is_pin_set );
+    }, 'json');
+}
 function isSessionActive() {
     var sessionActive = false;
     if (window.sessionStorage.getItem("sessionExpireDate") === null) {
@@ -115,11 +126,7 @@ function showDiv(divName) {
         checkForDeviceLogin();
     }
     if (divName === 'pincode_login_div') {
-        if (window.localStorage.getItem("userPin")) {
-            alert('Pin is set');
-        } else {
-            showDiv('pincode_setup_div');   
-        }
+        isPinSet(device.uuid,window.localStorage.getItem("user_identifier"));
     }
 }
 
