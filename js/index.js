@@ -139,10 +139,11 @@ function isSessionActive() {
     return sessionActive;
 }
 function showCorrectLoginDiv() {
-    if (window.localStorage.getItem("userPinCode") === null) {
-        showDiv('janrain_login_div');
+    if (window.localStorage.getItem("user_identifier")) {
+        //the user has logged in before
+        showDiv('pincode_login_div');  
     } else {
-        showDiv('pincode_login_div');   
+        showDiv('janrain_login_div');
     }
 }
 function showDiv(divName) {
