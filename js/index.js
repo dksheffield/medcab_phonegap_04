@@ -18,10 +18,7 @@ function onDeviceReady() {
             window.plugins.ChildBrowser.close();
         }
     };
-    //form validation
-    //$('#create_pin_form').h5Validate();
-    //listeners
-    listenerForCreatePinForm();
+    valdateCreatePinForm();
 }
 
 //regualr application functions
@@ -98,14 +95,6 @@ function isSessionActive() {
     }
     return sessionActive;
 }
-function listenerForCreatePinForm() {
-    var create_pin = $('#create_pin_form');
-    create_pin.on('submit', function(ev){
-	    ev.preventDefault();
-	    console.log(validateRequired('createPin1'));
-	    console.log('trying to submit form');
-    });
-}
 function showCorrectLoginDiv() {
     if (window.localStorage.getItem("userPinCode") === null) {
         showDiv('janrain_login_div');
@@ -134,22 +123,6 @@ function showDiv(divName) {
         isPinSet(device.uuid,window.localStorage.getItem("user_identifier"));
     }
 }
-
-function toggleStatus(prev_status,new_status) {
-    if (prev_status !== new_status) {
-        $('#local_storage_div').attr('data-network-status',new_status);
-        if (new_status == 'online') {
-            $('#offline_div').removeAttr('style');
-            $('#offline_div').attr('style','display: none;');
-            $('#online_div').removeAttr('style');
-        } else {
-            $('#offline_div').removeAttr('style');
-            $('#online_div').removeAttr('style');
-            $('#online_div').attr('style','display: none;');
-        }
-    }
-}
-
 function valdateCreatePinForm() {
     $('#create_pin_form').bootstrapValidator({
         message: 'This value is not valid',
