@@ -120,7 +120,7 @@ function listenerSubmitCreatePinForm() {
         };
         var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_set_pin';
         $.post( url, dataToPost, function(data) {
-            alert( data.toString() );
+            showCorrectLoginDiv();
         })
         .fail(function() {
             alert( "error" );
