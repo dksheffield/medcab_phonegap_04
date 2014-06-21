@@ -18,6 +18,7 @@ function onDeviceReady() {
             window.plugins.ChildBrowser.close();
         }
     };
+    listenerLoginPinForm();
     listenerSubmitCreatePinForm();
 }
 
@@ -92,6 +93,34 @@ function hideAllDivs() {
             $('#' + divs[x]).attr('style','display: none;');
         }
     */
+}
+function listenerLoginPinForm() {
+  $("#pin_login_form").submit(function(e){
+    e.preventDefault();
+    var fields = [
+        {
+            id:'pinNumber',
+            validators: ['required'],
+            pattern:/^[0-9]{4}$/,
+        },
+    ];
+    if (validateForm(fields)) {
+        var dataToPost = {
+            device_id:device.uuid,
+            user_identifier:window.localStorage.getItem("user_identifier"),
+            device_pin: $('#pinNumber').val(),
+        };
+        var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_pin_login';
+        $.post( url, dataToPost, function(data) {
+            alert(data.toString());
+        })
+        .fail(function() {
+            alert( "error" );
+        });
+    } else {
+        console.log('errors with: create_pin_form');
+    }
+  });
 }
 function listenerSubmitCreatePinForm() {
   $("#create_pin_form").submit(function(e){
