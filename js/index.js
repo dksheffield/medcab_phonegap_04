@@ -107,7 +107,10 @@ function isPinSet(str_device_id,str_user_identifier) {
     };
     $.post( url, postData, function( data ) {
         if (!data.is_pin_set) {
+            console.log('Pin is not set');
             showDiv('pincode_setup_div');   
+        } else {
+            console.log('Pin is set');
         }
     }, 'json');
 }
