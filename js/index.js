@@ -112,7 +112,10 @@ function isPinSet(str_device_id,str_user_identifier) {
         } else {
             console.log('Pin is set');
         }
-    }, 'json');
+    }, 'json')
+    .fail(function() {
+        alert( "isPinSet failed to come back..." );
+    });
 }
 function isSessionActive() {
     var sessionActive = false;
@@ -148,7 +151,8 @@ function showDiv(divName) {
         checkForDeviceLogin();
     }
     if (divName === 'pincode_login_div') {
-        valdateCreatePinForm();
+        console.log('launched div: pincode_login_div');
         isPinSet(device.uuid,window.localStorage.getItem("user_identifier"));
+        console.log('ran is pin set');
     }
 }
