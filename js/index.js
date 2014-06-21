@@ -66,12 +66,16 @@ function clearStorage() {
     console.log('clearing storage');   
 }
 function hideAllDivs() {
-    var divs = ['offline_div','janrain_login_div','loading_div',
-        'pincode_login_div'];
-    for (x=0;x<divs.length;x++) {
-        $('#' + divs[x]).removeAttr('style');
-        $('#' + divs[x]).attr('style','display: none;');
-    }
+    $('.single_page_content_div').removeAttr('style');
+    $('.single_page_content_div').attr('style','display: none;');
+    /*
+        var divs = ['offline_div','janrain_login_div','loading_div',
+            'pincode_login_div'];
+        for (x=0;x<divs.length;x++) {
+            $('#' + divs[x]).removeAttr('style');
+            $('#' + divs[x]).attr('style','display: none;');
+        }
+    */
 }
 function isPinSet(str_device_id,str_user_identifier) {
     var url = 'http://34.epharmacyapp.appspot.com/auth_users/is_pin_set';
@@ -80,8 +84,9 @@ function isPinSet(str_device_id,str_user_identifier) {
         user_identifier:str_user_identifier,
     };
     $.post( url, postData, function( data ) {
-        console.log(data);
-        alert( "Data Loaded: " + data.is_pin_set );
+        if (!data.is_pin_set) {
+            showDiv('pincode_setup_div');   
+        }
     }, 'json');
 }
 function isSessionActive() {
