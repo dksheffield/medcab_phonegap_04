@@ -10,6 +10,9 @@ function validateForm(fields) {
       console.log(fields[x].id);
       var value = $('#' + fields[x].id).val();
       var fieldValidates = true;
+      var errorMessage = '';
+      var patternMessage = '';
+      var matchMessage = '';
       //loop through validators
       if (fields[x].validators) {
         for (var y=0;y<fields[x].validators.length;y++) {
@@ -18,6 +21,7 @@ function validateForm(fields) {
             if (validator==='required') {
                 if (!validateRequired(value)) {
                     fieldValidates = false;
+                    errorMessage += 'This field is required. ';
                 }
             }
         }
@@ -26,34 +30,36 @@ function validateForm(fields) {
       if (fields[x].pattern) {
           if (!value.match(fields[x].pattern)) {
               fieldValidates = false;
+              patternMessage += 'Field does not match the correct pattern. ';
           }
       }
       //check if field matches
       if (fields[x].matchId) {
           var val1 = $('#' + fields[x].id).val();
           var val2 = $('#' + fields[x].matchId).val();
-          var matchMessage = null;
-          if (val1 != val2) {
+          if (val1 !== val2) {
             fieldValidates = false;
-            matchMessage = 'Fields do not match';
+            matchMessage += 'Fields do not match. ';
           }
       }
       //what to do if field does not validate
       if (!fieldValidates) {
           formValidates = false;
-          var fieldMessage = '';
+          var objToPush = {field:fields[x].id};
           if (fields[x].message) {
-              fieldMessage = fields[x].message;
+              objToPush.errorMessage = fields[x].message;
           } else {
-              fieldMessage = 'Please enter the correct information';
+              if (errorMessage) {
+                  objToPush.errorMessage = errorMessage;
+              }
           }
-          var objToPush = {field:fields[x].id,message:fieldMessage};
-          console.log('matchMessage: '+matchMessage);
+          if (patternMessage) {
+              objToPush.patternMessage = patternMessage;
+          }
           if (matchMessage) {
               objToPush.matchMessage = matchMessage;
           }
           badFields.push(objToPush);
-          matchMessage = null;
       }
     }
     //apply bootstrap to the form
@@ -65,12 +71,18 @@ function validateForm(fields) {
           //add help block
           var parent_div = $('#' + field).parent();
           var new_div_html = parent_div.html();
-          new_div_html += '<span class="help-block error-span">';
-          new_div_html += badFields[z].message+'</span>';
-          if (badFields[z].matchMessage) {
-              new_div_html += '<span class="help-block error-span">';
-              new_div_html += badFields[z].matchMessage+'</span>';
+          var fullErrorMessage = '';
+          if (badFields[z].errorMessage) {
+              fullErrorMessage += badFields[z].errorMessage;
           }
+          if (badFields[z].patternMessage) {
+              fullErrorMessage += badFields[z].patternMessage;
+          }
+          if (badFields[z].matchMessage) {
+              fullErrorMessage += badFields[z].matchMessage;
+          }
+          new_div_html += '<span class="help-block error-span">';
+          new_div_html += fullErrorMessage+'</span>';
           parent_div.html(new_div_html);
           label.addClass('control-label');
           $('#' + field).parent().addClass('has-error');
