@@ -113,7 +113,19 @@
         
         <div id="pincode_login_div" style="display: none;" class="single_page_content_div">
             <h3>Enter Your Pin</h3>
-            Enter Your Pin to Login
+            <form role="form" id="pin_login_form">
+                <div class="form-group">
+                    <label for="createPin1">Create Pin</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="pinNumber"
+                      name="pinNumber"
+                    >
+                    <a class="btn btn-danger">Forgot Pin</a>
+                    <button type="submit" class="btn btn-default">Submit</button>
+              </div>
+            </form>
         </div><!-- /janrain login div -->
         
         <div id="pincode_setup_div" style="display: none;" class="single_page_content_div">
