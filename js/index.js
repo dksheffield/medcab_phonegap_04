@@ -18,7 +18,6 @@ function onDeviceReady() {
             window.plugins.ChildBrowser.close();
         }
     };
-    valdateCreatePinForm();
 }
 
 //regualr application functions
@@ -120,10 +119,12 @@ function showDiv(divName) {
         checkForDeviceLogin();
     }
     if (divName === 'pincode_login_div') {
+        valdateCreatePinForm();
         isPinSet(device.uuid,window.localStorage.getItem("user_identifier"));
     }
 }
 function valdateCreatePinForm() {
+    console.log('begin validate create pin form');
     $('#create_pin_form').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
@@ -152,4 +153,5 @@ function valdateCreatePinForm() {
             
         }
     });  
+    console.log('end validate create pin form');
 }
