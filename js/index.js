@@ -73,6 +73,32 @@ function hideAllDivs() {
         }
     */
 }
+function listenerSubmitCreatePinForm() {
+  $("#create_pin_form").submit(function(e){
+    e.preventDefault();
+    var fields = [
+        {
+            id:'createPin1',
+            validators: ['required'],
+            pattern:/^[0-9]{4}$/,
+            message:'Pin is required and must be at least four digits',
+            matchId:'createPin2',
+        },
+        {
+            id:'createPin2',
+            validators: ['required'],
+            pattern:/^[0-9]{4}$/,
+            message:'Pin is required and must be at least four digits',
+            matchId:'createPin1',
+        },
+    ];
+    if (validateForm(fields)) {
+        console.log('going to submit: create_pin_form');
+    } else {
+        console.log('errors with: create_pin_form');
+    }
+  });
+}
 function isPinSet(str_device_id,str_user_identifier) {
     var url = 'http://34.epharmacyapp.appspot.com/auth_users/is_pin_set';
     var postData = {
@@ -122,36 +148,4 @@ function showDiv(divName) {
         valdateCreatePinForm();
         isPinSet(device.uuid,window.localStorage.getItem("user_identifier"));
     }
-}
-function valdateCreatePinForm() {
-    console.log('begin validate create pin form');
-    $('#create_pin_form').bootstrapValidator({
-        message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        submitHandler: function(validator, form, submitButton) {
-            // Use Ajax to submit form data
-            var createPin1 = $('#createPin1').val();
-            var createPin2 = $('#createPin2').val();
-            var dataToPost = {createPin1:createPin1,createPin2:createPin2};
-            dataToPost.device_pin = createPin1;
-            dataToPost.device_id = device.uuid;
-            dataToPost.user_identifier = window.localStorage.getItem("user_identifier");
-            console.log(dataToPost);
-            if (createPin1===createPin2) {
-                var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_set_pin';
-                $.post(url, dataToPost, function(result) {
-                    console.log(result);
-                }, 'json')
-                .fail(function() {
-                    alert( "error" );
-                });
-            }
-            
-        }
-    });  
-    console.log('end validate create pin form');
 }
