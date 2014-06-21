@@ -62,6 +62,25 @@ function checkForDeviceLogin() {
 function clearStorage() {
     console.log('clearing storage');   
 }
+function forgotPin() {
+    //delete from server
+    var dataToPost = {
+        device_id:device.uuid,
+        user_identifier:window.localStorage.getItem("user_identifier"),
+    };
+    var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_forgot_pin';
+    $.post( url, dataToPost, function(data) {
+        console.log(data);
+        //alert( data.toString() );
+    })
+    .fail(function() {
+        alert( "error" );
+    });
+    //delete from local phone
+    localStorage.clear();
+    //go to correct login place
+    showCorrectLoginDiv();
+}
 function hideAllDivs() {
     $('.single_page_content_div').removeAttr('style');
     $('.single_page_content_div').attr('style','display: none;');
