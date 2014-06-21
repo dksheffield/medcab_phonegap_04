@@ -149,3 +149,34 @@ function toggleStatus(prev_status,new_status) {
         }
     }
 }
+
+function valdateCreatePinForm() {
+    $('#create_pin_form').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        submitHandler: function(validator, form, submitButton) {
+            // Use Ajax to submit form data
+            var createPin1 = $('#createPin1').val();
+            var createPin2 = $('#createPin2').val();
+            var dataToPost = {createPin1:createPin1,createPin2:createPin2};
+            dataToPost.device_pin = createPin1;
+            dataToPost.device_id = device.uuid;
+            dataToPost.user_identifier = window.localStorage.getItem("user_identifier");
+            console.log(dataToPost);
+            if (createPin1===createPin2) {
+                var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_set_pin';
+                $.post(url, dataToPost, function(result) {
+                    console.log(result);
+                }, 'json')
+                .fail(function() {
+                    alert( "error" );
+                });
+            }
+            
+        }
+    });  
+}
