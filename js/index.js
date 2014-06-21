@@ -82,19 +82,30 @@ function listenerSubmitCreatePinForm() {
             id:'createPin1',
             validators: ['required'],
             pattern:/^[0-9]{4}$/,
-            message:'Pin is required and must be at least four digits',
+            //message:'Pin is required and must be at least four digits',
             matchId:'createPin2',
         },
         {
             id:'createPin2',
             validators: ['required'],
             pattern:/^[0-9]{4}$/,
-            message:'Pin is required and must be at least four digits',
+            //message:'Pin is required and must be at least four digits',
             matchId:'createPin1',
         },
     ];
     if (validateForm(fields)) {
-        console.log('going to submit: create_pin_form');
+        var dataToPost = {
+            device_id:device.uuid,
+            user_identifier:window.localStorage.getItem("user_identifier"),
+            device_pin: $('#createPin1').val(),
+        };
+        var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_set_pin';
+        $.post( url, dataToPost, function(data) {
+            alert( data.toString() );
+        })
+        .fail(function() {
+            alert( "error" );
+        });
     } else {
         console.log('errors with: create_pin_form');
     }
