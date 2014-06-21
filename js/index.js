@@ -18,6 +18,7 @@ function onDeviceReady() {
             window.plugins.ChildBrowser.close();
         }
     };
+    listenerSubmitCreatePinForm();
 }
 
 //regualr application functions
