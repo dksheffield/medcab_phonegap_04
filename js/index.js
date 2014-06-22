@@ -112,8 +112,12 @@ function listenerLoginPinForm() {
         };
         var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_pin_login';
         $.post( url, dataToPost, function(data) {
-            alert(data.toString());
-        })
+            if (data.logged_in) {
+                showDiv('landing_div');  
+            } else {
+                alert('Pin Invalid, please try again...');   
+            }
+        }, 'json')
         .fail(function() {
             alert( "error" );
         });
