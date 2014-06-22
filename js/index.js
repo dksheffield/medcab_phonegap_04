@@ -132,7 +132,7 @@ function isProfileSet() {
         alert(data.toString());
     }, 'json')
     .fail(function() {
-        alert( "error" );
+        alert( "error checking on profile" );
     });
 }
 function isSessionActive() {
