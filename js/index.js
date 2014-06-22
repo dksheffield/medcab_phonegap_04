@@ -122,7 +122,7 @@ function isPinSet() {
     console.log('engine isPinSet');
 }
 function isProfileSet() {
-    var url = getAppParams()+'/auth_users/is_profile_set';
+    var url = getAppParams().server+'/auth_users/is_profile_set';
     var postData = {
         device_id: device.uuid,
         user_identifier:window.localStorage.getItem("user_identifier"),
