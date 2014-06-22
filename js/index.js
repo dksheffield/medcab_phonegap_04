@@ -102,6 +102,7 @@ function hideAllDivs() {
     */
 }
 function isPinSet() {
+    console.log('starting isPinSet');
     var url = getAppParams().server+'/auth_users/is_pin_set';
     var postData = {
         device_id: device.uuid,
@@ -118,6 +119,7 @@ function isPinSet() {
     .fail(function() {
         alert( "isPinSet failed to come back..." );
     });
+    console.log('engine isPinSet');
 }
 function isProfileSet() {
     var url = getAppParams()+'/auth_users/is_profile_set';
