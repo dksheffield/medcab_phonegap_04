@@ -220,6 +220,9 @@ function listenerSubmitCreatePinForm() {
     }
   });
 }
+function populateProfileForm() {
+    // 
+}
 function showCorrectLoginDiv() {
     if (window.localStorage.getItem("user_identifier")) {
         //the user has logged in before
