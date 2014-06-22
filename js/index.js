@@ -246,6 +246,6 @@ function showDiv(divName) {
         console.log('ran is pin set');
     }
     if (div.hasClass('require_profile')) {
-           
+        isProfileSet();
     }
 }
