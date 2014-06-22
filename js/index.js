@@ -14,7 +14,7 @@ function onDeviceReady() {
     //setInterval(function(){ajaxOnlineCheck()}, 30000);
     //call back for child browser
     window.plugins.ChildBrowser.onLocationChange = function (url) {
-        if (url === 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler') {
+        if (url === getAppParams().server+'/auth_users/phonegap_handler') {
             window.plugins.ChildBrowser.close();
         }
     };
@@ -34,7 +34,7 @@ function ajaxOnlineCheck() {
     });
 }
 function checkForDeviceLogin() {
-    var json_url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_handler_json?device_id=' + device.uuid;
+    var json_url = getAppParams().server + '/auth_users/phonegap_handler_json?device_id=' + device.uuid;
     setTimeout(function() {
         $.getJSON( json_url, function( data ) {
             console.log(data);
@@ -69,7 +69,7 @@ function forgotPin() {
         device_id:device.uuid,
         user_identifier:window.localStorage.getItem("user_identifier"),
     };
-    var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_forgot_pin';
+    var url = getAppParams().server + '/auth_users/phonegap_forgot_pin';
     $.post( url, dataToPost, function(data) {
         console.log(data);
         //alert( data.toString() );
@@ -82,6 +82,13 @@ function forgotPin() {
     //go to correct login place
     showCorrectLoginDiv();
 }
+function getAppParams() {
+    var objToReturn = {};
+    objToReturn.server = 'http://54.84.121.230:8080';
+    //objToReturn.server = 'http://34.epharmacyapp.appspot.com/';
+    //objToReturn.server = 'https://epharmacyapp.appspot.com/';
+    return objToReturn;
+}
 function hideAllDivs() {
     $('.single_page_content_div').removeAttr('style');
     $('.single_page_content_div').attr('style','display: none;');
@@ -93,6 +100,47 @@ function hideAllDivs() {
             $('#' + divs[x]).attr('style','display: none;');
         }
     */
+}
+function isPinSet() {
+    var url = getAppParams().server+'/auth_users/is_pin_set';
+    var postData = {
+        device_id: device.uuid,
+        user_identifier:window.localStorage.getItem("user_identifier"),
+    };
+    $.post( url, postData, function( data ) {
+        if (!data.is_pin_set) {
+            console.log('Pin is not set');
+            showDiv('pincode_setup_div');   
+        } else {
+            console.log('Pin is set');
+        }
+    }, 'json')
+    .fail(function() {
+        alert( "isPinSet failed to come back..." );
+    });
+}
+function isProfileSet() {
+    var url = getAppParams()+'/auth_users/is_profile_set';
+    var postData = {
+        device_id: device.uuid,
+        user_identifier:window.localStorage.getItem("user_identifier"),
+        token:window.localStorage.getItem("token"),
+    };
+    $.post( url, postData, function( data ) {
+        alert(data.toString());
+    }, 'json')
+    .fail(function() {
+        alert( "error" );
+    });
+}
+function isSessionActive() {
+    var sessionActive = false;
+    if (window.sessionStorage.getItem("sessionExpireDate") === null) {
+        console.log('no session object named sessionExpireDate');
+    } else {
+        console.log('There is a session named sessionExpireDate');   
+    }
+    return sessionActive;
 }
 function listenerLoginPinForm() {
   $("#pin_login_form").submit(function(e){
@@ -110,7 +158,7 @@ function listenerLoginPinForm() {
             user_identifier:window.localStorage.getItem("user_identifier"),
             device_pin: $('#pinNumber').val(),
         };
-        var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_pin_login';
+        var url = getAppParams().server+'/auth_users/phonegap_pin_login';
         $.post( url, dataToPost, function(data) {
             if (data.logged_in) {
                 window.localStorage.setItem("token",data.token);
@@ -152,7 +200,7 @@ function listenerSubmitCreatePinForm() {
             user_identifier:window.localStorage.getItem("user_identifier"),
             device_pin: $('#createPin1').val(),
         };
-        var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_set_pin';
+        var url = getAppParams().server+'/auth_users/phonegap_set_pin';
         $.post( url, dataToPost, function(data) {
             showCorrectLoginDiv();
         })
@@ -163,47 +211,6 @@ function listenerSubmitCreatePinForm() {
         console.log('errors with: create_pin_form');
     }
   });
-}
-function isPinSet(str_device_id,str_user_identifier) {
-    var url = 'http://34.epharmacyapp.appspot.com/auth_users/is_pin_set';
-    var postData = {
-        device_id: str_device_id,
-        user_identifier:str_user_identifier,
-    };
-    $.post( url, postData, function( data ) {
-        if (!data.is_pin_set) {
-            console.log('Pin is not set');
-            showDiv('pincode_setup_div');   
-        } else {
-            console.log('Pin is set');
-        }
-    }, 'json')
-    .fail(function() {
-        alert( "isPinSet failed to come back..." );
-    });
-}
-function isProfileSet() {
-    var url = 'http://34.epharmacyapp.appspot.com/auth_users/is_profile_set';
-    var postData = {
-        device_id: device.uuid,
-        user_identifier:window.localStorage.getItem("user_identifier"),
-        token:window.localStorage.getItem("token"),
-    };
-    $.post( url, postData, function( data ) {
-        alert(data.toString());
-    }, 'json')
-    .fail(function() {
-        alert( "error" );
-    });
-}
-function isSessionActive() {
-    var sessionActive = false;
-    if (window.sessionStorage.getItem("sessionExpireDate") === null) {
-        console.log('no session object named sessionExpireDate');
-    } else {
-        console.log('There is a session named sessionExpireDate');   
-    }
-    return sessionActive;
 }
 function showCorrectLoginDiv() {
     if (window.localStorage.getItem("user_identifier")) {
@@ -223,7 +230,7 @@ function showDiv(divName) {
         ajaxOnlineCheck();        
     }
     if (divName === 'janrain_login_div') {
-        var url = 'http://34.epharmacyapp.appspot.com/auth_users/login_phonegap?continue_url=/auth_users/phonegap_handler?device_id=' + device.uuid;
+        var url = getAppParams().server+'/auth_users/login_phonegap?continue_url=/auth_users/phonegap_handler?device_id=' + device.uuid;
         setTimeout(function(){
             window.plugins.ChildBrowser.showWebPage(url,
                 { showNavigationBar: false,showLocationBar:false,
@@ -233,7 +240,7 @@ function showDiv(divName) {
     }
     if (divName === 'pincode_login_div') {
         console.log('launched div: pincode_login_div');
-        isPinSet(device.uuid,window.localStorage.getItem("user_identifier"));
+        isPinSet();
         console.log('ran is pin set');
     }
     if (div.hasClass('require_profile')) {
