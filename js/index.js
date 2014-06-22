@@ -113,6 +113,7 @@ function listenerLoginPinForm() {
         var url = 'http://34.epharmacyapp.appspot.com/auth_users/phonegap_pin_login';
         $.post( url, dataToPost, function(data) {
             if (data.logged_in) {
+                window.localStorage.setItem("token",data.token);
                 showDiv('landing_div');  
             } else {
                 alert('Pin Invalid, please try again...');   
@@ -181,6 +182,20 @@ function isPinSet(str_device_id,str_user_identifier) {
         alert( "isPinSet failed to come back..." );
     });
 }
+function isProfileSet() {
+    var url = 'http://34.epharmacyapp.appspot.com/auth_users/is_profile_set';
+    var postData = {
+        device_id: device.uuid,
+        user_identifier:window.localStorage.getItem("user_identifier"),
+        token:window.localStorage.getItem("token"),
+    };
+    $.post( url, postData, function( data ) {
+        alert(data.toString());
+    }, 'json')
+    .fail(function() {
+        alert( "error" );
+    });
+}
 function isSessionActive() {
     var sessionActive = false;
     if (window.sessionStorage.getItem("sessionExpireDate") === null) {
@@ -201,7 +216,8 @@ function showCorrectLoginDiv() {
 function showDiv(divName) {
     navigator.notification.vibrate(125);
     hideAllDivs();
-    $('#' + divName).removeAttr('style');
+    var div = $('#' + divName);
+    div.removeAttr('style');
     //call backs for divs
     if (divName !== 'offline_div') {
         ajaxOnlineCheck();        
@@ -219,5 +235,8 @@ function showDiv(divName) {
         console.log('launched div: pincode_login_div');
         isPinSet(device.uuid,window.localStorage.getItem("user_identifier"));
         console.log('ran is pin set');
+    }
+    if (div.hasClass('require_profile')) {
+           
     }
 }
