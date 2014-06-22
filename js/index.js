@@ -129,7 +129,12 @@ function isProfileSet() {
         token:window.localStorage.getItem("token"),
     };
     $.post( url, postData, function( data ) {
-        alert(data.toString());
+        if (!data.token_valid) {
+            showDiv('showCorrectLoginDiv'); 
+        }
+        if (!data.is_profile_set) {
+            alert('Profile not set');
+        }
     }, 'json')
     .fail(function() {
         alert( "error checking on profile" );
