@@ -25,7 +25,8 @@ function onDeviceReady() {
 //regualr application functions
 function ajaxOnlineCheck() {
     console.log('Checking if we are online...');
-    var jqxhr = $.get( "http://www.google.com", function() {
+    var url = getAppParams().server+'/auth_users/is_app_serving';
+    var jqxhr = $.get( url, function() {
         console.log('We are online :)');
     })
     .fail(function() {
