@@ -163,10 +163,36 @@
         </div><!-- /pin code setup div -->
         
         <div id="user_profile_div" style="display: none;" class="single_page_content_div">
-            <h3>Profile</h3>
-            Please fill out the following information:
-            
-        </div><!-- /janrain login div -->
+            <h3>Please fill out the following information</h3>
+            <form role="form" id="edit_profile_form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                >
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                >
+              </div>
+              <div class="form-group">
+                <label for="mobile">Mobile Phone</label>
+                <input type="text"
+                  class="form-control"
+                  id="mobile"
+                  name="mobile"
+                >
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div><!-- /user_profile_div -->
         
         <hr />
         <div id="uuid">Default</div>
