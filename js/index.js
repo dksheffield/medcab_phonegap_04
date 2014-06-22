@@ -130,10 +130,10 @@ function isProfileSet() {
     };
     $.post( url, postData, function( data ) {
         if (!data.token_valid) {
-            showDiv('showCorrectLoginDiv'); 
+            showCorrectLoginDiv(); 
         }
         if (!data.is_profile_set) {
-            alert('Profile not set');
+            showDiv('user_profile_div');
         }
     }, 'json')
     .fail(function() {
