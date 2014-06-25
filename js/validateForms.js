@@ -113,8 +113,10 @@ function validateRequired(value) {
 }
 function validateEmail(value) {
     if (value.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/)) {
+        console.log('email matched regex');
         return true;
     } else {
+        console.log('email did not match regex');
         return false;
     }
 }
