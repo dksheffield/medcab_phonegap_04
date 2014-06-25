@@ -24,6 +24,13 @@ function validateForm(fields) {
                     errorMessage += 'This field is required. ';
                 }
             }
+            //email validator
+            if (validator==='email') {
+                if (!validateEmail(value)) {
+                    fieldValidates = false;
+                    errorMessage += 'Must be an email address. ';
+                }
+            }
         }
       }
       //check pattern
@@ -99,6 +106,13 @@ function validateForm(fields) {
       
 function validateRequired(value) {
     if (value) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function validateEmail(value) {
+    if (value.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/)) {
         return true;
     } else {
         return false;

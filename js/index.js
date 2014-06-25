@@ -184,6 +184,45 @@ function listenerLoginPinForm() {
     }
   });
 }
+function listenerEditProfileForm() {
+  $("#edit_profile_form").submit(function(e){
+    e.preventDefault();
+    var fields = [
+        {
+            id:'name',
+            validators: ['required'],
+            //message:'Pin is required and must be at least four digits',
+        },
+        {
+            id:'email',
+            validators: ['required', 'email'],
+            //message:'Pin is required and must be at least four digits',
+        },
+        {
+            id:'mobile',
+            validators: ['required'],
+            pattern:/^[0-9]{10}$/,
+            //message:'Pin is required and must be at least four digits',
+        },
+    ];
+    if (validateForm(fields)) {
+        var dataToPost = {
+            device_id:device.uuid,
+            user_identifier:window.localStorage.getItem("user_identifier"),
+            device_pin: $('#createPin1').val(),
+        };
+        var url = getAppParams().server+'/auth_users/phonegap_set_pin';
+        $.post( url, dataToPost, function(data) {
+            showCorrectLoginDiv();
+        })
+        .fail(function() {
+            alert( "error" );
+        });
+    } else {
+        console.log('errors with: create_pin_form');
+    }
+  });
+}
 function listenerSubmitCreatePinForm() {
   $("#create_pin_form").submit(function(e){
     e.preventDefault();
