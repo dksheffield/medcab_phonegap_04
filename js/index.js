@@ -131,6 +131,7 @@ function isProfileSet() {
     };
     $.post( url, postData, function( data ) {
         if (!data.token_valid) {
+            populateProfileFormFromLocalStorage();
             showCorrectLoginDiv(); 
         }
         if (!data.is_profile_set) {
@@ -220,8 +221,8 @@ function listenerSubmitCreatePinForm() {
     }
   });
 }
-function populateProfileForm() {
-    // 
+function populateProfileFormFromLocalStorage() {
+    $('#email').val(window.localStorage.getItem("userEmail"));
 }
 function showCorrectLoginDiv() {
     if (window.localStorage.getItem("user_identifier")) {
