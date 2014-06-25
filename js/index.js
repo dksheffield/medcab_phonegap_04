@@ -222,6 +222,8 @@ function listenerSubmitCreatePinForm() {
   });
 }
 function populateProfileFormFromLocalStorage() {
+    console.log('populating profile form local storage');
+    console.log('Email from local: ' + window.localStorage.getItem("userEmail"));
     $('#email').val(window.localStorage.getItem("userEmail"));
 }
 function showCorrectLoginDiv() {
