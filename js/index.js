@@ -131,11 +131,11 @@ function isProfileSet() {
     };
     $.post( url, postData, function( data ) {
         if (!data.token_valid) {
-            populateProfileFormFromLocalStorage();
             showCorrectLoginDiv(); 
         }
         if (!data.is_profile_set) {
             showDiv('user_profile_div');
+            populateProfileFormFromLocalStorage();
         }
     }, 'json')
     .fail(function() {
