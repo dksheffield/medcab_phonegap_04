@@ -202,8 +202,7 @@ function listenerEditProfileForm() {
         {
             id:'mobile',
             validators: ['required'],
-            pattern:/^[0-9]{10}$/,
-            message:'Example: 1112223333',
+            pattern:/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/,
             //message:'Pin is required and must be at least four digits',
         },
     ];
