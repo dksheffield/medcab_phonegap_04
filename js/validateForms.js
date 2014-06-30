@@ -19,9 +19,16 @@ function validateForm(fields) {
             var validator = fields[x].validators[y];
             //required validator
             if (validator==='required') {
-                if (!validateRequired(value)) {
-                    fieldValidates = false;
-                    errorMessage += 'This field is required. ';
+                if ($("#"+fields[x].id).attr('type')==='checkbox') {
+                    if (!validateAtLeastOneCheckbox(fields[x].id)) {
+                        fieldValidates = false;
+                        errorMessage += 'You must select at least one. '; 
+                    }
+                } else {
+                    if (!validateRequired(value)) {
+                        fieldValidates = false;
+                        errorMessage += 'This field is required. ';
+                    }
                 }
             }
             //email validator
@@ -66,11 +73,16 @@ function validateForm(fields) {
           if (matchMessage) {
               objToPush.matchMessage = matchMessage;
           }
+          if (fields[x].callbackIfInvalid) {
+            objToPush.callbackIfInvalid = fields[x].callbackIfInvalid;
+          }
           badFields.push(objToPush);
       }
     }
-    //apply bootstrap to the form
+    //apply bootstrap and callbacks to the form
     if (badFields) {
+        console.log('Bad Fields...');
+        console.log(badFields);
       for (var z = 0;z<badFields.length;z++) {
           var field = badFields[z].field;
           var fieldValue = $('#' + field).val();
@@ -97,17 +109,21 @@ function validateForm(fields) {
           if (z===0) {
             $('#' + badFields[0].field).focus();
           }
+          if (badFields[z].callbackIfInvalid) {
+            badFields[z].callbackIfInvalid();
+          }
       }
     }
     //alert('Form Validation: ' + formValidates);
     console.log(badFields);
     return formValidates;
 }
-      
-function validateRequired(value) {
-    if (value) {
+function validateAtLeastOneCheckbox(checkboxId) {
+    if ($("#"+checkboxId+":checked").length > 0) {
+        console.log($("#"+checkboxId+":checked").length+' item(s) are checked');   
         return true;
     } else {
+        console.log('no option is checked for '+checkboxId);
         return false;
     }
 }
@@ -117,6 +133,13 @@ function validateEmail(value) {
         return true;
     } else {
         console.log('email did not match regex');
+        return false;
+    }
+}     
+function validateRequired(value) {
+    if (value) {
+        return true;
+    } else {
         return false;
     }
 }
