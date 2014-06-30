@@ -210,11 +210,11 @@ function listenerEditProfileForm() {
         var dataToPost = {
             device_id:device.uuid,
             user_identifier:window.localStorage.getItem("user_identifier"),
-            device_pin: $('#createPin1').val(),
+            token:window.localStorage.getItem("token"),
         };
-        var url = getAppParams().server+'/auth_users/phonegap_set_pin';
+        var url = getAppParams().server+'/phonegap_api/edit_profile';
         $.post( url, dataToPost, function(data) {
-            showCorrectLoginDiv();
+            alert(data.toString());
         })
         .fail(function() {
             alert( "error" );
