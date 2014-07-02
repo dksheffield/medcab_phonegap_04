@@ -207,13 +207,16 @@ function listenerEditProfileForm() {
         },
     ];
     if (validateForm(fields)) {
+        var mobile = $('#mobile').val();
+        mobile = mobile.replace("-", "");
+        mobile = "+1"+mobile;
         var dataToPost = {
             device_id:device.uuid,
             user_identifier:window.localStorage.getItem("user_identifier"),
             token:window.localStorage.getItem("token"),
             name:$('#name').val(),
             email:$('#email').val(),
-            mobile:$('#mobile').val(),
+            mobile_number:mobile,
             notify_via_email:$('#notify_via_email').val(),
             notify_via_sms:$('#notify_via_sms').val(),
         };
