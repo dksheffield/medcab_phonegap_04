@@ -304,7 +304,7 @@ function showCorrectLoginDiv() {
 function showDiv(divName) {
     navigator.notification.vibrate(100);
     hideAllDivs();
-    writeNotifications();
+    //writeNotifications();
     var div = $('#' + divName);
     div.removeAttr('style');
     //call backs for divs
