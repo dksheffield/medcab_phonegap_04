@@ -302,8 +302,9 @@ function showCorrectLoginDiv() {
     }
 }
 function showDiv(divName) {
-    navigator.notification.vibrate(125);
+    navigator.notification.vibrate(100);
     hideAllDivs();
+    writeNotifications();
     var div = $('#' + divName);
     div.removeAttr('style');
     //call backs for divs
@@ -326,5 +327,17 @@ function showDiv(divName) {
     }
     if (div.hasClass('require_profile')) {
         isProfileSet();
+    }
+}
+function writeNotifications() {
+    if (session.Storage.getItem("notifications")) {
+        var notifications = JSON.parse(session.Storage.getItem("notifications"));
+        sessionStorage.removeItem("notifications");
+        var html = '';
+        for (var x=0;x<notifications.length;x++) {
+            html += notifications[x].message + ',' + notifications[x].messageType+'<br />';
+        }
+        $('#notification_div').html(html);
+        $('#notification_div').removeAttr('style');
     }
 }
