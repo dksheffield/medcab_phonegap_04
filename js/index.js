@@ -304,7 +304,7 @@ function showCorrectLoginDiv() {
 function showDiv(divName) {
     navigator.notification.vibrate(100);
     hideAllDivs();
-    //writeNotifications();
+    writeNotifications();
     var div = $('#' + divName);
     div.removeAttr('style');
     //call backs for divs
@@ -330,10 +330,7 @@ function showDiv(divName) {
     }
 }
 function writeNotifications() {
-    console.log('starting write notifications');
-    alert('starting write notifications');
     if (sessionStorage.getItem("notifications")) {
-        console.log('we have notifications');
         var notifications = JSON.parse(session.Storage.getItem("notifications"));
         sessionStorage.removeItem("notifications");
         var html = '';
