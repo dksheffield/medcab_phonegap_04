@@ -214,6 +214,8 @@ function listenerEditProfileForm() {
         };
         var formData = $("#edit_profile_form").serialize();
         var postData = jQuery.extend(dataToPost, formData);
+        console.log('Post Data: ');
+        console.log(postData);
         var url = getAppParams().server+'/phonegap_api/edit_profile';
         $.post( url, postData, function(data) {
             alert(data.toString());
