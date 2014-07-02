@@ -211,13 +211,14 @@ function listenerEditProfileForm() {
             device_id:device.uuid,
             user_identifier:window.localStorage.getItem("user_identifier"),
             token:window.localStorage.getItem("token"),
+            name:$('#name').val(),
+            email:$('#email').val(),
+            mobile:$('#mobile').val(),
+            notify_via_email:$('#notify_via_email').val(),
+            notify_via_sms:$('#notify_via_sms').val(),
         };
-        var formData = $("#edit_profile_form").serialize();
-        var postData = jQuery.extend(dataToPost, formData);
-        console.log('Post Data: ');
-        console.log(postData);
         var url = getAppParams().server+'/phonegap_api/edit_profile';
-        $.post( url, postData, function(data) {
+        $.post( url, dataToPost, function(data) {
             alert(data.toString());
         })
         .fail(function() {
