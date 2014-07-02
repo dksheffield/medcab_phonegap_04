@@ -212,8 +212,10 @@ function listenerEditProfileForm() {
             user_identifier:window.localStorage.getItem("user_identifier"),
             token:window.localStorage.getItem("token"),
         };
+        var formData = $("#edit_profile_form").serialize();
+        var postData = jQuery.extend(dataToPost, formData);
         var url = getAppParams().server+'/phonegap_api/edit_profile';
-        $.post( url, dataToPost, function(data) {
+        $.post( url, postData, function(data) {
             alert(data.toString());
         })
         .fail(function() {
