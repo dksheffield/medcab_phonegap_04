@@ -224,8 +224,11 @@ function listenerEditProfileForm() {
         $.post( url, dataToPost, function(data) {
             alert(data.toString());
             if (data.success) {
+                alert('profile updated');
                 //setLocalFlash('Profile Updated.');
-                showDiv('landing_div');  
+                //showDiv('landing_div');  
+            } else {
+                alert('profile not updated');   
             }
         })
         .fail(function() {
