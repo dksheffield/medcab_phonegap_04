@@ -208,7 +208,7 @@ function listenerEditProfileForm() {
     ];
     if (validateForm(fields)) {
         var mobile = $('#mobile').val();
-        mobile = mobile.replace("-", "");
+        mobile = mobile.replace(/-/g, "");
         mobile = "+1"+mobile;
         var dataToPost = {
             device_id:device.uuid,
