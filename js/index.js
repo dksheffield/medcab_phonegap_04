@@ -332,7 +332,7 @@ function showDiv(divName) {
 function writeNotifications() {
     console.log('starting write notifications');
     alert('starting write notifications');
-    if (session.Storage.getItem("notifications")) {
+    if (sessionStorage.getItem("notifications")) {
         console.log('we have notifications');
         var notifications = JSON.parse(session.Storage.getItem("notifications"));
         sessionStorage.removeItem("notifications");
