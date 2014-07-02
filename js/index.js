@@ -222,14 +222,12 @@ function listenerEditProfileForm() {
         };
         var url = getAppParams().server+'/phonegap_api/edit_profile';
         $.post( url, dataToPost, function(data) {
-            alert(data.toString());
-            alert(data.success);
-            if (data.success) {
-                alert('profile updated');
-                //setLocalFlash('Profile Updated.');
-                //showDiv('landing_div');  
+            var jsonData = JSON.parse(data);
+            if (jsonData.success) {
+                setLocalFlash('Profile Updated.');
+                showDiv('landing_div');  
             } else {
-                alert('profile not updated');   
+                alert('error, please try again');   
             }
         })
         .fail(function() {
