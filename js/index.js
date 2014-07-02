@@ -223,6 +223,7 @@ function listenerEditProfileForm() {
         var url = getAppParams().server+'/phonegap_api/edit_profile';
         $.post( url, dataToPost, function(data) {
             alert(data.toString());
+            alert(data.success);
             if (data.success) {
                 alert('profile updated');
                 //setLocalFlash('Profile Updated.');
