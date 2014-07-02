@@ -222,11 +222,11 @@ function listenerEditProfileForm() {
         };
         var url = getAppParams().server+'/phonegap_api/edit_profile';
         $.post( url, dataToPost, function(data) {
+            alert(data.toString());
             if (data.success) {
                 setLocalFlash('Profile Updated.');
                 showDiv('landing_div');  
             }
-            //alert(data.toString());
         })
         .fail(function() {
             alert( "error" );
