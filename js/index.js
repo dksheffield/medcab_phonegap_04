@@ -222,7 +222,11 @@ function listenerEditProfileForm() {
         };
         var url = getAppParams().server+'/phonegap_api/edit_profile';
         $.post( url, dataToPost, function(data) {
-            alert(data.toString());
+            if (data.success) {
+                setLocalFlash('Profile Updated.');
+                showDiv('landing_div');  
+            }
+            //alert(data.toString());
         })
         .fail(function() {
             alert( "error" );
@@ -273,6 +277,19 @@ function populateProfileFormFromLocalStorage() {
     console.log('populating profile form local storage');
     console.log('Email from local: ' + window.localStorage.getItem("userEmail"));
     $('#email').val(window.localStorage.getItem("userEmail"));
+}
+function setLocalFlash(message,messageType) {
+    var notifications = null;
+    if (sessionStorage.getItem("notifications")) {
+        notifications = JSON.parse(sessionStorage.getItem("notifications"));  
+    } else {
+        notifications = [];
+    }
+    if (!messageType) {
+        messageType = 'alert-info'; 
+    }
+    notifications.push({message:message,messageType:messageType});
+    sessionStorage.setItem("notifications",JSON.stringify(notifications));
 }
 function showCorrectLoginDiv() {
     if (window.localStorage.getItem("user_identifier")) {
