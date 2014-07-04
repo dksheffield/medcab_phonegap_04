@@ -331,8 +331,7 @@ function showDiv(divName) {
 }
 function writeNotifications() {
     if (sessionStorage.getItem("notifications")) {
-        var notifications = JSON.parse(session.Storage.getItem("notifications"));
-        alert(notifications.toString());
+        var notifications = JSON.parse(sessionStorage.getItem("notifications"));
         sessionStorage.removeItem("notifications");
         var html = '';
         for (var x=0;x<notifications.length;x++) {
@@ -341,7 +340,6 @@ function writeNotifications() {
         $('#notification_div').html(html);
         $('#notification_div').removeAttr('style');
     } else {
-        alert('we don\'t have notifications');
         console.log('we don\'t have notifications');   
     }
 }
