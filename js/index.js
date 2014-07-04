@@ -137,6 +137,8 @@ function isProfileSet() {
         if (!data.is_profile_set) {
             showDiv('user_profile_div');
             populateProfileFormFromLocalStorage();
+        } else {
+            populateProfileFormFromWeb();
         }
     }, 'json')
     .fail(function() {
@@ -274,6 +276,27 @@ function listenerSubmitCreatePinForm() {
         console.log('errors with: create_pin_form');
     }
   });
+}
+function populateProfileFormWeb() {
+    var dataToPost = {
+        device_id:device.uuid,
+        user_identifier:window.localStorage.getItem("user_identifier"),
+        token:window.localStorage.getItem("token"),
+    };
+    var url = getAppParams().server+'/phonegap_api/get_profile';
+    $.post( url, dataToPost, function(data) {
+        var jsonData = JSON.parse(data);
+        if (jsonData.results) {
+            alert(jsonData.results.toString());  
+        } else {
+            alert('error, please try again');   
+        }
+    })
+        .fail(function() {
+            alert( "error" );
+        });
+    alert('updating from web');
+    
 }
 function populateProfileFormFromLocalStorage() {
     console.log('populating profile form local storage');
