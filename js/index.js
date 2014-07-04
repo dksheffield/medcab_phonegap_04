@@ -341,6 +341,7 @@ function writeNotifications() {
         $('#notification_div').html(html);
         $('#notification_div').removeAttr('style');
     } else {
+        alert('we don\'t have notifications');
         console.log('we don\'t have notifications');   
     }
 }
