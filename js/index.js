@@ -277,7 +277,7 @@ function listenerSubmitCreatePinForm() {
     }
   });
 }
-function populateProfileFormWeb() {
+function populateProfileFormFromWeb() {
     var dataToPost = {
         device_id:device.uuid,
         user_identifier:window.localStorage.getItem("user_identifier"),
