@@ -8,8 +8,8 @@ function listenerSubmitRefillForm() {
             //message:'Pin is required and must be at least four digits',
         },
         {
-            id:'email',
-            validators: ['required', 'email'],
+            id:'refill_dob',
+            validators: ['required'],
             //message:'Pin is required and must be at least four digits',
         },
         {
@@ -20,24 +20,18 @@ function listenerSubmitRefillForm() {
         },
     ];
     if (validateForm(fields)) {
-        var mobile = $('#mobile').val();
-        mobile = mobile.replace(/-/g, "");
-        mobile = "+1"+mobile;
         var dataToPost = {
             device_id:device.uuid,
             user_identifier:window.localStorage.getItem("user_identifier"),
             token:window.localStorage.getItem("token"),
-            name:$('#name').val(),
-            email:$('#email').val(),
-            mobile_number:mobile,
-            notify_via_email:$('#notify_via_email').val(),
-            notify_via_sms:$('#notify_via_sms').val(),
+            refill_pharmacy:$('#refill_pharmacy').val(),
+            refill_dob:$('#refill_dob').val(),
         };
-        var url = getAppParams().server+'/phonegap_api/edit_profile';
+        var url = getAppParams().server+'/phonegap_api/submit_refill';
         $.post( url, dataToPost, function(data) {
             var jsonData = JSON.parse(data);
             if (jsonData.success) {
-                setNotification('Profile Updated.');
+                setNotification('Refill Recieved. We will notify you when it is ready to be picked up.','alert-success');
                 showDiv('landing_div');  
             } else {
                 alert('error, please try again');   
