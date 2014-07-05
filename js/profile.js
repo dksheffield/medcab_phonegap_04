@@ -103,6 +103,7 @@ function populateProfileFormFromWeb() {
             //store profile locally
             localStorage.removeItem('profile');
             localStorage.setItem("profile", JSON.parse(jsonData.results));
+            writeLastUsedPharmacy();
         } else {
             alert('error, please try again');   
         }
