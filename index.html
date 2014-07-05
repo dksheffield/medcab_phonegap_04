@@ -23,6 +23,8 @@
     <script src="js/validateForms.js"></script>
     <!-- notifications -->
     <script type="text/javascript" charset="utf-8" src="js/notifications.js"></script>
+    <!-- profile -->
+    <script type="text/javascript" charset="utf-8" src="js/profile.js"></script>
     
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -112,7 +114,7 @@
         <div id="landing_div" style="display: none;" class="single_page_content_div require_profile">
             <h3>Please Select</h3>
             <div class="list-group">
-              <a href="#" class="list-group-item">Submit Refill</a>
+              <a onclick="showDiv('submit_refill_div');" class="list-group-item">Submit Refill</a>
               <a href="#" class="list-group-item">Submit Transfer</a>
               <a href="#" class="list-group-item">History</a>
               <a onclick="showDiv('user_profile_div');" class="list-group-item">Preferences</a>
@@ -169,6 +171,11 @@
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
+        </div><!-- /pin code setup div -->
+        
+        <div id="submit_refill_div" style="display: none;" class="single_page_content_div require_profile">
+            <h3>Submit Refill</h3>
+            
         </div><!-- /pin code setup div -->
         
         <div id="user_profile_div" style="display: none;" class="single_page_content_div">
