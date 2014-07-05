@@ -20,6 +20,7 @@ function listenerSubmitRefillForm() {
         },
     ];
     if (validateForm(fields)) {
+        alert($('#refill_dob').val());
         var dataToPost = {
             device_id:device.uuid,
             user_identifier:window.localStorage.getItem("user_identifier"),
