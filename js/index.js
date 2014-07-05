@@ -287,7 +287,7 @@ function populateProfileFormFromWeb() {
     $.post( url, dataToPost, function(data) {
         var jsonData = JSON.parse(data);
         if (jsonData.results) {
-            alert(jsonData.results.toString());  
+            console.log(jsonData.results);  
         } else {
             alert('error, please try again');   
         }
@@ -295,8 +295,6 @@ function populateProfileFormFromWeb() {
         .fail(function() {
             alert( "error" );
         });
-    alert('updating from web');
-    
 }
 function populateProfileFormFromLocalStorage() {
     console.log('populating profile form local storage');
