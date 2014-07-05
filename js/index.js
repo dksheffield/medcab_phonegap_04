@@ -213,7 +213,7 @@ function listenerEditProfileForm() {
         $.post( url, dataToPost, function(data) {
             var jsonData = JSON.parse(data);
             if (jsonData.success) {
-                setLocalFlash('Profile Updated.');
+                setNotification('Profile Updated.');
                 showDiv('landing_div');  
             } else {
                 alert('error, please try again');   
@@ -302,19 +302,6 @@ function populateProfileFormFromLocalStorage() {
     console.log('Email from local: ' + window.localStorage.getItem("userEmail"));
     $('#email').val(window.localStorage.getItem("userEmail"));
 }
-function setLocalFlash(message,messageType) {
-    var notifications = null;
-    if (sessionStorage.getItem("notifications")) {
-        notifications = JSON.parse(sessionStorage.getItem("notifications"));  
-    } else {
-        notifications = [];
-    }
-    if (!messageType) {
-        messageType = 'alert-info'; 
-    }
-    notifications.push({message:message,messageType:messageType});
-    sessionStorage.setItem("notifications",JSON.stringify(notifications));
-}
 function showCorrectLoginDiv() {
     if (window.localStorage.getItem("user_identifier")) {
         //the user has logged in before
@@ -354,19 +341,5 @@ function showDiv(divName) {
     */
     if (div.hasClass('require_profile')) {
         isProfileSet();
-    }
-}
-function writeNotifications() {
-    if (sessionStorage.getItem("notifications")) {
-        var notifications = JSON.parse(sessionStorage.getItem("notifications"));
-        sessionStorage.removeItem("notifications");
-        var html = '';
-        for (var x=0;x<notifications.length;x++) {
-            html += notifications[x].message + ',' + notifications[x].messageType+'<br />';
-        }
-        $('#notification_div').html(html);
-        $('#notification_div').removeAttr('style');
-    } else {
-        console.log('we don\'t have notifications');   
     }
 }
