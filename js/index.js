@@ -12,7 +12,7 @@ function onDeviceReady() {
         }
     };
     getPharmaciesFromServer(); //get pharmacies and write them as selects
-    //writeLastUsedPharmacy(); //write last used pharmacy to selects
+    writeLastUsedPharmacy(); //write last used pharmacy to selects
     
     listenerEditProfileForm();
     listenerLoginPinForm();

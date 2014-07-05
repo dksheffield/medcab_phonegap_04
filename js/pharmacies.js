@@ -8,6 +8,9 @@ function getPharmaciesFromServer() {
 }
 function writeLastUsedPharmacy() {
     alert('running writeLastUsedPharmacy');
-    var profile = JSON.parse(localStorage.getItem("profile"));
-    alert(profile.customer_last_pharmacy);
+    if (localStorage.getItem("profile")) {
+        var profile = JSON.parse(localStorage.getItem("profile"));
+        alert(profile.customer_last_pharmacy);
+    }
+    
 }
