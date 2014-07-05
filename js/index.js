@@ -4,15 +4,8 @@ function onBodyLoad() {
 }
 function onDeviceReady() {
     showDiv('loading_div');
-    if (isSessionActive()) {
-        console.log('User is logged in');
-        showDiv('loading_div');
-    } else {
-        showCorrectLoginDiv();   
-    }
-    $('#uuid').html(device.uuid);
-    //setInterval(function(){ajaxOnlineCheck()}, 30000);
-    //call back for child browser
+
+    //listen for child browser window change
     window.plugins.ChildBrowser.onLocationChange = function (url) {
         if (url === getAppParams().server+'/auth_users/phonegap_handler') {
             window.plugins.ChildBrowser.close();
@@ -21,6 +14,9 @@ function onDeviceReady() {
     listenerEditProfileForm();
     listenerLoginPinForm();
     listenerSubmitCreatePinForm();
+    
+    //let user login
+    showCorrectLoginDiv(); 
 }
 
 //regualr application functions
@@ -144,15 +140,6 @@ function isProfileSet() {
     .fail(function() {
         alert( "error checking on profile" );
     });
-}
-function isSessionActive() {
-    var sessionActive = false;
-    if (window.sessionStorage.getItem("sessionExpireDate") === null) {
-        console.log('no session object named sessionExpireDate');
-    } else {
-        console.log('There is a session named sessionExpireDate');   
-    }
-    return sessionActive;
 }
 function listenerLoginPinForm() {
   $("#pin_login_form").submit(function(e){
