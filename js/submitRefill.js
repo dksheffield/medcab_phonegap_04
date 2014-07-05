@@ -27,6 +27,7 @@ function listenerSubmitRefillForm() {
             refill_pharmacy:$('#refill_pharmacy').val(),
             refill_dob:$('#refill_dob').val(),
             refill_rx_numbers:$('#refill_rx_numbers').val(),
+            refill_notes:$('#refill_notes').val()
         };
         var url = getAppParams().server+'/phonegap_api/submit_refill';
         $.post( url, dataToPost, function(data) {
