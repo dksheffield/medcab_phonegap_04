@@ -11,6 +11,8 @@ function onDeviceReady() {
             window.plugins.ChildBrowser.close();
         }
     };
+    getPharmaciesFromServer(); //get pharmacies and write them as selects
+    
     listenerEditProfileForm();
     listenerLoginPinForm();
     listenerSubmitCreatePinForm();
