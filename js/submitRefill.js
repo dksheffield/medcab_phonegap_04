@@ -13,9 +13,8 @@ function listenerSubmitRefillForm() {
             //message:'Pin is required and must be at least four digits',
         },
         {
-            id:'mobile',
+            id:'refill_rx_numbers',
             validators: ['required'],
-            pattern:/^[0-9]{10}$/,
             //message:'Pin is required and must be at least four digits',
         },
     ];
@@ -27,6 +26,7 @@ function listenerSubmitRefillForm() {
             token:window.localStorage.getItem("token"),
             refill_pharmacy:$('#refill_pharmacy').val(),
             refill_dob:$('#refill_dob').val(),
+            refill_rx_numbers:$('#refill_rx_numbers').val(),
         };
         var url = getAppParams().server+'/phonegap_api/submit_refill';
         $.post( url, dataToPost, function(data) {
