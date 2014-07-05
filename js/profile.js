@@ -102,14 +102,18 @@ function populateProfileFormFromWeb() {
             if (jsonData.results.customer_last_pharmacy) {
                 writeLastUsedPharmacy(jsonData.results.customer_last_pharmacy);
             }
+            if (jsonData.results.customer_last_date_of_birth) {
+                writeLastUsedDob(jsonData.results.customer_last_date_of_birth);
+            }
+            
             
             //store profile locally
-            if (localStorage.removeItem('profile')) {
+            if (localStorage.getItem('profile')) {
                 localStorage.removeItem('profile');
             }
             localStorage.setItem("profile", JSON.parse(jsonData.results));
             alert('should be running writeLastUsedPharmacy from the profile data next');
-            writeLastUsedPharmacy(jsonData.results.customer_last_pharmacy);
+            //writeLastUsedPharmacy(jsonData.results.customer_last_pharmacy);
         } else {
             alert('error, please try again');   
         }
