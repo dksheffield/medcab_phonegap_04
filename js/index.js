@@ -288,6 +288,10 @@ function populateProfileFormFromWeb() {
         var jsonData = JSON.parse(data);
         if (jsonData.results) {
             console.log(jsonData.results);  
+            $('#name').val(jsonData.results.name);
+            $('#email').val(jsonData.results.alert_email);
+            var formMobile = jsonData.results.mobile_number.replace('+1','');
+            $('#mobile').val(formMobile);
         } else {
             alert('error, please try again');   
         }
