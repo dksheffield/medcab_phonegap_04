@@ -347,9 +347,11 @@ function showDiv(divName) {
         isPinSet();
         console.log('ran is pin set');
     }
+    /*
     if (divName === 'user_profile_div') {
         isProfileSet();   
     }
+    */
     if (div.hasClass('require_profile')) {
         isProfileSet();
     }
