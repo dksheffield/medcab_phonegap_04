@@ -11,6 +11,8 @@ function writeLastUsedPharmacy() {
     if (localStorage.getItem("profile")) {
         var profile = JSON.parse(localStorage.getItem("profile"));
         alert(profile.customer_last_pharmacy);
+    } else {
+        alert('no localStorage - profile');   
     }
     
 }
