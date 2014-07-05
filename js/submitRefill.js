@@ -3,7 +3,7 @@ function listenerSubmitRefillForm() {
     e.preventDefault();
     var fields = [
         {
-            id:'name',
+            id:'refill_pharmacy',
             validators: ['required'],
             //message:'Pin is required and must be at least four digits',
         },
