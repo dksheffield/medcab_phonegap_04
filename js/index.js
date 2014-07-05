@@ -292,6 +292,16 @@ function populateProfileFormFromWeb() {
             $('#email').val(jsonData.results.alert_email);
             var formMobile = jsonData.results.mobile_number.replace('+1','');
             $('#mobile').val(formMobile);
+            if (jsonData.results.alert_via_email) {
+                $('#notify_via_email').val('yes');
+            } else {
+                $('#notify_via_email').val('no');
+            }
+            if (jsonData.results.alert_via_sms) {
+                $('#notify_via_sms').val('yes');
+            } else {
+                $('#notify_via_sms').val('no');
+            }
         } else {
             alert('error, please try again');   
         }
