@@ -6,13 +6,12 @@ function getPharmaciesFromServer() {
         }
     });
 }
-function writeLastUsedPharmacy() {
+function writeLastUsedPharmacy(pharmacy) {
     alert('running writeLastUsedPharmacy');
-    if (localStorage.getItem("profile")) {
-        var profile = JSON.parse(localStorage.getItem("profile"));
-        alert(profile.customer_last_pharmacy);
-    } else {
-        alert('no localStorage - profile');   
-    }
+    $("#refill_pharmacy option").each(function(){
+        if ($(this).text() === pharmacy) {
+            $(this).attr("selected","selected");
+        }
+    });
     
 }

@@ -99,6 +99,9 @@ function populateProfileFormFromWeb() {
             } else {
                 $('#notify_via_sms').val('no');
             }
+            if (jsonData.results.customer_last_pharmacy) {
+                writeLastUsedPharmacy(jsonData.results.customer_last_pharmacy);
+            }
             
             //store profile locally
             if (localStorage.removeItem('profile')) {
@@ -106,7 +109,7 @@ function populateProfileFormFromWeb() {
             }
             localStorage.setItem("profile", JSON.parse(jsonData.results));
             alert('should be running writeLastUsedPharmacy from the profile data next');
-            writeLastUsedPharmacy();
+            writeLastUsedPharmacy(jsonData.results.customer_last_pharmacy);
         } else {
             alert('error, please try again');   
         }
