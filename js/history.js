@@ -10,6 +10,7 @@ function getHistoryFromServer() {
             setNotification('You must be logged in to perform this action','alert-warning');
             showCorrectLoginDiv();
         } else {
+            console.log(data);
             html = '';
             $.each( data.results, function( key, value ) {
                 html += value.type+':';
