@@ -98,11 +98,10 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a onclick="showDiv('landing_div');" data-toggle="collapse" data-target=".navbar-collapse">Home</a></li>
-            <li><a onclick="showDiv('submit_refill_div');" data-toggle="collapse" data-target=".navbar-collapse">Request Refill</a></li>
-            <li><a onclick="showDiv('submit_transfer_div');" data-toggle="collapse" data-target=".navbar-collapse">Request Transfer</a></li>
-            <li><a href="#contact">History</a></li>
-            <li><a href="#contact">My Account</a></li>
-            <li><a href="#contact">Logout</a></li>
+            <li><a onclick="showDiv('submit_refill_div');" data-toggle="collapse" data-target=".navbar-collapse">Submit Refill</a></li>
+            <li><a onclick="showDiv('submit_transfer_div');" data-toggle="collapse" data-target=".navbar-collapse">Submit Transfer</a></li>
+            <li><a onclick="showDiv('user_history_div');" data-toggle="collapse" data-target=".navbar-collapse">History</a></li>
+            <li><a onclick="showDiv('user_profile_div');" data-toggle="collapse" data-target=".navbar-collapse">My Preferences</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -124,7 +123,7 @@
             <div class="list-group">
               <a onclick="showDiv('submit_refill_div');" class="list-group-item">Submit Refill</a>
               <a onclick="showDiv('submit_transfer_div');" class="list-group-item">Submit Transfer</a>
-              <a href="#" class="list-group-item">History</a>
+              <a onclick="showDiv('user_history_div');" class="list-group-item">History</a>
               <a onclick="showDiv('user_profile_div');" class="list-group-item">Preferences</a>
             </div>
         </div><!-- /end offline_div -->
