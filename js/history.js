@@ -12,7 +12,13 @@ function getHistoryFromServer() {
         } else {
             console.log(data);
             html = '';
-            
+            html += '<table class="table table-striped table-condensed table-responsive">';
+            html += '<tr>';
+            html += '<th>Type</th>';
+            html += '<th>Date</th>';
+            html += '<th>RX Numbers</th>';
+            html += '<th>Status</th>';
+            html += '</tr>';
             $.each( data.results, function( key, value ) {
                 var valueType = null;
                 if (value.type === 'transfer') {
@@ -27,6 +33,7 @@ function getHistoryFromServer() {
                 html += '<td>'+value.status+'</td>';
                 html += '</tr>';
             }); 
+            html += '</table>'
             $('#user_history_content_div').html(html);
             $('#user_history_total_div').html(data.total+' Items');
         }
