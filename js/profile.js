@@ -18,7 +18,7 @@ function isProfileSet() {
         }
     }, 'json')
     .fail(function() {
-        alert( "error checking on profile" );
+        console.log( "error checking on profile" );
     });
 }
 function listenerEditProfileForm() {
