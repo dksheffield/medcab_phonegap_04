@@ -216,6 +216,7 @@ function showDiv(divName) {
     if (div.hasClass('require_login')) {
         if (!window.localStorage.getItem("token")) {
             console.log('There is no token so we are not logged in');
+            showCorrectLoginDiv();
         }
     }
     div.removeAttr('style');
