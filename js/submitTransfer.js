@@ -48,7 +48,7 @@ function listenerSubmitTransferForm() {
                 showCorrectLoginDiv(); 
             } else {
                 if (jsonData.success) {
-                    setNotification('Transfer Recieved. We will notify you when it is ready to be picked up.','alert-success');
+                    setNotification('Transfer received! We will notify you when it is ready to be picked up.','alert-success');
                     showDiv('user_history_div'); 
                     //clear certain form values
                     $('#transfer_rx_numbers').val('');
