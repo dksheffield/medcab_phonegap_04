@@ -12,6 +12,7 @@ function getHistoryFromServer() {
         } else {
             console.log(data);
             html = '';
+            
             $.each( data.results, function( key, value ) {
                 var valueType = null;
                 if (value.type === 'transfer') {
@@ -19,15 +20,14 @@ function getHistoryFromServer() {
                 } else {
                     valueType = 'Refill';
                 }
-                html += valueType+':';
-                html += value.created.month+'/'+value.created.day+'/'+value.created.year+' - ';
-                html += value.rx_numbers+' - ';
-                html += 'Status: '+value.status;
-                html += '<br />';
+                html += '<tr>';
+                html += '<td>'+valueType+'</td>';
+                html += '<td>'+value.created.month+'/'+value.created.day+'/'+value.created.year+'</td>';
+                html += '<td>'+value.rx_numbers+'</td>';
+                html += '<td>'+value.status+'</td>';
             }); 
-            html += '<hr />';
-            html += data.total+' Items';
             $('#user_history_content_div').html(html);
+            $('#user_history_total_div').html(data.total+' Items');
         }
     }, 'json');
 }
