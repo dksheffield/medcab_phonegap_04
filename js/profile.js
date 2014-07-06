@@ -59,7 +59,7 @@ function listenerEditProfileForm() {
         var url = getAppParams().server+'/phonegap_api/edit_profile';
         $.post( url, dataToPost, function(data) {
             var jsonData = JSON.parse(data);
-            if (!data.authenticated) {
+            if (!jsonData.authenticated) {
                 showCorrectLoginDiv(); 
             } else {
                 if (jsonData.success) {
