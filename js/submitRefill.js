@@ -31,13 +31,17 @@ function listenerSubmitRefillForm() {
         var url = getAppParams().server+'/phonegap_api/submit_refill';
         $.post( url, dataToPost, function(data) {
             var jsonData = JSON.parse(data);
-            if (jsonData.success) {
-                setNotification('Refill Recieved. We will notify you when it is ready to be picked up.','alert-success');
-                showDiv('user_history_div'); 
-                $('#refill_rx_numbers').val('');
-                $('#refill_notes').val('');
+            if (!jsonData.authenticated) {
+                showCorrectLoginDiv(); 
             } else {
-                alert('error, please try again');   
+                if (jsonData.success) {
+                    setNotification('Refill received! We will notify you when it is ready to be picked up.','alert-success');
+                    showDiv('user_history_div'); 
+                    $('#refill_rx_numbers').val('');
+                    $('#refill_notes').val('');
+                } else {
+                    alert('error, please try again');   
+                }
             }
         })
         .fail(function() {

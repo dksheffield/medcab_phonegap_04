@@ -44,16 +44,20 @@ function listenerSubmitTransferForm() {
         var url = getAppParams().server+'/phonegap_api/submit_transfer';
         $.post( url, dataToPost, function(data) {
             var jsonData = JSON.parse(data);
-            if (jsonData.success) {
-                setNotification('Transfer Recieved. We will notify you when it is ready to be picked up.','alert-success');
-                showDiv('user_history_div'); 
-                //clear certain form values
-                $('#transfer_rx_numbers').val('');
-                $('#transfer_notes').val('');
-                //$('#transfer_old_pharmacy').val('');
-                //$('#transfer_old_pharmacy_number').val('');
+            if (!jsonData.authenticated) {
+                showCorrectLoginDiv(); 
             } else {
-                alert('error, please try again');   
+                if (jsonData.success) {
+                    setNotification('Transfer Recieved. We will notify you when it is ready to be picked up.','alert-success');
+                    showDiv('user_history_div'); 
+                    //clear certain form values
+                    $('#transfer_rx_numbers').val('');
+                    $('#transfer_notes').val('');
+                    //$('#transfer_old_pharmacy').val('');
+                    //$('#transfer_old_pharmacy_number').val('');
+                } else {
+                    alert('error, please try again');   
+                }
             }
         })
         .fail(function() {
