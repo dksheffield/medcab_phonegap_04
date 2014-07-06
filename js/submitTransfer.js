@@ -34,10 +34,12 @@ function listenerSubmitTransferForm() {
             device_id:device.uuid,
             user_identifier:window.localStorage.getItem("user_identifier"),
             token:window.localStorage.getItem("token"),
-            transfer_pharmacy:$('#refill_pharmacy').val(),
-            transfer_dob:$('#refill_dob').val(),
-            transfer_rx_numbers:$('#refill_rx_numbers').val(),
-            transfer_notes:$('#refill_notes').val()
+            transfer_pharmacy:$('#transfer_pharmacy').val(),
+            transfer_dob:$('#transfer_dob').val(),
+            transfer_rx_numbers:$('#transfer_rx_numbers').val(),
+            transfer_old_pharmacy:$('#transfer_old_pharmacy').val(),
+            transfer_old_pharmacy_number:$('#transfer_old_pharmacy_number').val(),
+            transfer_notes:$('#transfer_notes').val()
         };
         var url = getAppParams().server+'/phonegap_api/submit_transfer';
         $.post( url, dataToPost, function(data) {
