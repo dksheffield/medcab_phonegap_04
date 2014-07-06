@@ -124,7 +124,7 @@
             <a class="janrainEngage btn btn-default" href="#">Sign-In</a>
         </div><!-- /janrain login div -->
         
-        <div id="landing_div" style="display: none;" class="single_page_content_div require_profile">
+        <div id="landing_div" style="display: none;" class="single_page_content_div require_profile require_login">
             <h3>What do you need to do?</h3>
             <div class="list-group">
               <a onclick="showDiv('submit_refill_div');" class="list-group-item">Submit Refill</a>
@@ -186,7 +186,7 @@
             </form>
         </div><!-- /pin code setup div -->
         
-        <div id="submit_refill_div" style="display: none;" class="single_page_content_div require_profile">
+        <div id="submit_refill_div" style="display: none;" class="single_page_content_div require_profile require_login">
             <h3>Submit Refill</h3>
             <form role="form" id="submit_refill_form">
               <div class="form-group">
@@ -225,7 +225,7 @@
             </form>
         </div><!-- /submit refill div -->
         
-        <div id="submit_transfer_div" style="display: none;" class="single_page_content_div require_profile">
+        <div id="submit_transfer_div" style="display: none;" class="single_page_content_div require_profile require_login">
             <h3>Submit Transfer</h3>
             <form role="form" id="submit_transfer_form">
               <div class="form-group">
@@ -281,7 +281,7 @@
             </form>
         </div><!-- /submit transfer div -->
         
-        <div id="user_profile_div" style="display: none;" class="single_page_content_div">
+        <div id="user_profile_div" style="display: none;" class="single_page_content_div require_login">
             <h3>Please fill out the following information</h3>
             <form role="form" id="edit_profile_form">
               <div class="form-group">
@@ -328,7 +328,7 @@
             </form>
         </div><!-- /user_profile_div -->
         
-        <div id="user_history_div" style="display: none;" class="single_page_content_div require_profile">
+        <div id="user_history_div" style="display: none;" class="single_page_content_div require_profile require_login">
             <h3>Refill and Transfer History</h3>
             <div id="user_history_content_div"></div>
             <div id="user_history_total_div"></div>

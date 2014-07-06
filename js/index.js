@@ -212,6 +212,12 @@ function showDiv(divName) {
     navigator.notification.vibrate(100);
     hideAllDivs();
     writeNotifications();
+    if (div.hasClass('require_login')) {
+        if (!window.localStorage.getItem("token")) {
+            showCorrectLoginDiv(); 
+        }
+    }
+    
     var div = $('#' + divName);
     div.removeAttr('style');
     //call backs for divs
