@@ -146,7 +146,8 @@ function listenerLoginPinForm() {
         $.post( url, dataToPost, function(data) {
             if (data.logged_in) {
                 window.localStorage.setItem("token",data.token);
-                showDiv('landing_div');  
+                showDiv('landing_div'); 
+                $('#pinNumber').val('');
             } else {
                 alert('Pin Invalid, please try again...');   
             }
