@@ -18,6 +18,7 @@ function onDeviceReady() {
     listenerLoginPinForm();
     listenerSubmitCreatePinForm();
     listenerSubmitRefillForm();
+    listenerSubmitTransferForm();
     
     //let user login
     showCorrectLoginDiv(); 
