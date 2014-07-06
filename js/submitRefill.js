@@ -19,7 +19,6 @@ function listenerSubmitRefillForm() {
         },
     ];
     if (validateForm(fields)) {
-        alert($('#refill_dob').val());
         var dataToPost = {
             device_id:device.uuid,
             user_identifier:window.localStorage.getItem("user_identifier"),
@@ -34,7 +33,9 @@ function listenerSubmitRefillForm() {
             var jsonData = JSON.parse(data);
             if (jsonData.success) {
                 setNotification('Refill Recieved. We will notify you when it is ready to be picked up.','alert-success');
-                showDiv('landing_div');  
+                showDiv('landing_div'); 
+                $('#refill_rx_numbers').val('');
+                $('#refill_notes').val('');
             } else {
                 alert('error, please try again');   
             }
