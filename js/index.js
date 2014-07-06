@@ -199,6 +199,7 @@ function listenerSubmitCreatePinForm() {
 }
 function logoutUser() {
     window.localStorage.removeItem("token");
+    setNotification('You have been logged out.','alert-warning');
     showDiv('pincode_login_div');
 }
 function showCorrectLoginDiv() {
