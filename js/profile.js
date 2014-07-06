@@ -6,7 +6,7 @@ function isProfileSet() {
         token:window.localStorage.getItem("token"),
     };
     $.post( url, postData, function( data ) {
-        if (!data.token_valid) {
+        if (!data.authenticated) {
             showCorrectLoginDiv(); 
         } else {
             if (!data.is_profile_set) {
@@ -59,11 +59,15 @@ function listenerEditProfileForm() {
         var url = getAppParams().server+'/phonegap_api/edit_profile';
         $.post( url, dataToPost, function(data) {
             var jsonData = JSON.parse(data);
-            if (jsonData.success) {
-                setNotification('Profile Updated.');
-                showDiv('landing_div');  
+            if (!data.authenticated) {
+                showCorrectLoginDiv(); 
             } else {
-                alert('error, please try again');   
+                if (jsonData.success) {
+                    setNotification('Profile Updated.');
+                    showDiv('landing_div');  
+                } else {
+                    alert('error, please try again');   
+                }
             }
         })
         .fail(function() {

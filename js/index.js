@@ -213,12 +213,6 @@ function showDiv(divName) {
     hideAllDivs();
     writeNotifications();
     var div = $('#' + divName);
-    if (div.hasClass('require_login')) {
-        if (!window.localStorage.getItem("token")) {
-            console.log('There is no token so we are not logged in');
-            showCorrectLoginDiv();
-        }
-    }
     div.removeAttr('style');
     //call backs for divs
     if (divName !== 'offline_div') {
@@ -238,13 +232,11 @@ function showDiv(divName) {
         isPinSet();
         console.log('ran is pin set');
     }
-    
     if (divName === 'user_history_div') {
         setTimeout(function() {
             getHistoryFromServer();
         }, 1000);
     }
-    
     if (div.hasClass('require_profile')) {
         isProfileSet();
     }
