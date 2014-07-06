@@ -18,6 +18,8 @@ function getHistoryFromServer() {
                 html += 'Status: '+value.status;
                 html += '<br />';
             }); 
+            html += '<hr />';
+            html += data.total+' Items';
             $('#user_history_content_div').html(html);
         }
     }, 'json');
