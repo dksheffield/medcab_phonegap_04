@@ -13,7 +13,13 @@ function getHistoryFromServer() {
             console.log(data);
             html = '';
             $.each( data.results, function( key, value ) {
-                html += value.type+':';
+                var valueType = null;
+                if (value.type === 'transfer') {
+                    valueType = 'Transfer';
+                } else {
+                    valueType = 'Refill';
+                }
+                html += valueType+':';
                 html += value.created.month+'/'+value.created.day+'/'+value.created.year+' - ';
                 html += value.rx_numbers+' - ';
                 html += 'Status: '+value.status;
