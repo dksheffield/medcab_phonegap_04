@@ -37,7 +37,7 @@ function getHistoryFromServer() {
                 html += '</tr>';
             }); 
             html += '</tbody>';
-            html += '</table>'
+            html += '</table>';
             $('#user_history_content_div').html(html);
             $('#user_history_total_div').html(data.total+' Items');
         }
