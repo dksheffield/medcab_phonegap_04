@@ -214,7 +214,7 @@ function showDiv(divName) {
     writeNotifications();
     if (div.hasClass('require_login')) {
         if (!window.localStorage.getItem("token")) {
-            showCorrectLoginDiv(); 
+            console.log('There is no token so we are not logged in');
         }
     }
     
