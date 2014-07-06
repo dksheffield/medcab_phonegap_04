@@ -97,14 +97,6 @@ function getAppParams() {
 function hideAllDivs() {
     $('.single_page_content_div').removeAttr('style');
     $('.single_page_content_div').attr('style','display: none;');
-    /*
-        var divs = ['offline_div','janrain_login_div','loading_div',
-            'pincode_login_div'];
-        for (x=0;x<divs.length;x++) {
-            $('#' + divs[x]).removeAttr('style');
-            $('#' + divs[x]).attr('style','display: none;');
-        }
-    */
 }
 function isPinSet() {
     console.log('starting isPinSet');
@@ -122,7 +114,7 @@ function isPinSet() {
         }
     }, 'json')
     .fail(function() {
-        alert( "isPinSet failed to come back..." );
+        console.log("isPinSet failed to come back...");
     });
     console.log('engine isPinSet');
 }
