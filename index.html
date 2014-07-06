@@ -93,13 +93,13 @@
             <span class="icon-bar"></span>
           </button>
           <img src="images/icon.png" class="img-responsive pull-left" alt="ePharmacy">
-          <a class="navbar-brand" onclick="showDiv('landing_div');">ePharmacy</a>
+          <a class="navbar-brand" onclick="showDiv('landing_div');" data-toggle="collapse" data-target=".navbar-collapse">ePharmacy</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a onclick="showDiv('landing_div');" data-toggle="collapse" data-target=".navbar-collapse">Home</a></li>
-            <li><a href="#">Request Refill</a></li>
-            <li><a href="#about">Request Transfer</a></li>
+            <li><a onclick="showDiv('submit_refill_div');" data-toggle="collapse" data-target=".navbar-collapse">Request Refill</a></li>
+            <li><a onclick="showDiv('submit_transfer_div');" data-toggle="collapse" data-target=".navbar-collapse">Request Transfer</a></li>
             <li><a href="#contact">History</a></li>
             <li><a href="#contact">My Account</a></li>
             <li><a href="#contact">Logout</a></li>
@@ -123,7 +123,7 @@
             <h3>Please Select</h3>
             <div class="list-group">
               <a onclick="showDiv('submit_refill_div');" class="list-group-item">Submit Refill</a>
-              <a href="#" class="list-group-item">Submit Transfer</a>
+              <a onclick="showDiv('submit_transfer_div');" class="list-group-item">Submit Transfer</a>
               <a href="#" class="list-group-item">History</a>
               <a onclick="showDiv('user_profile_div');" class="list-group-item">Preferences</a>
             </div>
@@ -218,7 +218,46 @@
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
-        </div><!-- /pin code setup div -->
+        </div><!-- /submit refill div -->
+        
+        <div id="submit_transfer_div" style="display: none;" class="single_page_content_div require_profile">
+            <h3>Submit Transfer</h3>
+            <form role="form" id="submit_transfer_form">
+              <div class="form-group">
+                <label for="transfer_pharmacy">Pharmacy</label>
+                <select class="form-control" id="transfer_pharmacy" name="transfer_pharmacy">
+                  
+                </select>
+                <span class="help-block">Please select the Store Location where you will be picking your up prescription.</span>
+              </div>
+              <div class="form-group">
+                <label for="transfer_dob">Date of Birth:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="transfer_dob"
+                  name="transfer_dob"
+                >
+              </div>
+              <div class="form-group">
+                <label for="transfer_rx_numbers">Prescription Numbers:</label>
+                <textarea class="form-control" rows="3" id="transfer_rx_numbers" name="transfer_rx_numbers"></textarea>
+                <span class="help-block">
+                    Please enter the prescription numbers as they appear on your Medicine Cabinet Label.
+                    <br /><b><span style="color:red;">For Multiple Refills:</span></b> Be sure to enter one RX Number per line (press enter after typing each RX Number).
+                    <br /><b>Note:</b> If you don't have access to your RX Bottle, type names of the drugs you are requesting to be refilled.
+                </span>
+              </div>
+              <div class="form-group">
+                <label for="transfer_notes">Notes / Comments:</label>
+                <textarea class="form-control" rows="3" id="transfer_notes" name="transfer_notes"></textarea>
+                <span class="help-block">
+                    Type any special notes to the pharmacy here.
+                </span>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div><!-- /submit transfer div -->
         
         <div id="user_profile_div" style="display: none;" class="single_page_content_div">
             <h3>Please fill out the following information</h3>
