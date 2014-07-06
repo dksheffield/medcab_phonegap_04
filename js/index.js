@@ -196,6 +196,10 @@ function listenerSubmitCreatePinForm() {
     }
   });
 }
+function logoutUser() {
+    window.localStorage.removeItem("token");
+    showDiv('pincode_login_div');
+}
 function showCorrectLoginDiv() {
     if (window.localStorage.getItem("user_identifier")) {
         //the user has logged in before
