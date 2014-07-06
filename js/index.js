@@ -202,7 +202,6 @@ function showCorrectLoginDiv() {
     }
 }
 function showDiv(divName) {
-    $('#nav_collapse').dropdown('toggle');
     navigator.notification.vibrate(100);
     hideAllDivs();
     writeNotifications();
