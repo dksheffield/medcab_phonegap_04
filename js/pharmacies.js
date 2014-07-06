@@ -3,6 +3,7 @@ function getPharmaciesFromServer() {
     $.getJSON( url, function( data ) {
         for (var x=0;x<data.pharmacies.length;x++) {
            $('#refill_pharmacy').append('<option>'+data.pharmacies[x]+'</option>');
+           $('#transfer_pharmacy').append('<option>'+data.pharmacies[x]+'</option>');
         }
     });
 }
@@ -11,5 +12,10 @@ function writeLastUsedPharmacy(pharmacy) {
         if ($(this).text() === pharmacy) {
             $(this).attr("selected","selected");
         }
-    }); 
+    });
+    $("#transfer_pharmacy option").each(function(){
+        if ($(this).text() === pharmacy) {
+            $(this).attr("selected","selected");
+        }
+    });
 }
