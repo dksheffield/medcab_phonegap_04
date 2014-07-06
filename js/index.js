@@ -11,6 +11,8 @@ function onDeviceReady() {
             window.plugins.ChildBrowser.close();
         }
     };
+    getHistoryFromServer(); //get customer history
+    
     getPharmaciesFromServer(); //get pharmacies and write them as selects
     writeLastUsedPharmacy(); //write last used pharmacy to selects
     
@@ -226,11 +228,13 @@ function showDiv(divName) {
         isPinSet();
         console.log('ran is pin set');
     }
-    /*
-    if (divName === 'user_profile_div') {
-        isProfileSet();   
+    
+    if (divName === 'user_history_div') {
+        setTimeout(function() {
+            getHistoryFromServer();
+        }, 1000);
     }
-    */
+    
     if (div.hasClass('require_profile')) {
         isProfileSet();
     }
