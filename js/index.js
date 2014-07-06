@@ -212,13 +212,12 @@ function showDiv(divName) {
     navigator.notification.vibrate(100);
     hideAllDivs();
     writeNotifications();
+    var div = $('#' + divName);
     if (div.hasClass('require_login')) {
         if (!window.localStorage.getItem("token")) {
             console.log('There is no token so we are not logged in');
         }
     }
-    
-    var div = $('#' + divName);
     div.removeAttr('style');
     //call backs for divs
     if (divName !== 'offline_div') {
