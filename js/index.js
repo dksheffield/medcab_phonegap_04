@@ -89,9 +89,9 @@ function forgotPin() {
 }
 function getAppParams() {
     var objToReturn = {};
-    objToReturn.server = 'http://54.84.121.230:8080';
+    //objToReturn.server = 'http://54.84.121.230:8080';
     //objToReturn.server = 'http://35.epharmacyapp.appspot.com';
-    //objToReturn.server = 'https://epharmacyapp.appspot.com';
+    objToReturn.server = 'https://epharmacyapp.appspot.com';
     return objToReturn;
 }
 function hideAllDivs() {
