@@ -64,11 +64,12 @@
 		
 		<content src="index.html" />
 		
+        <access origin="http://54.84.121.230:8080" />
 		<access origin="http://34.epharmacyapp.appspot.com" />
 		<access origin="https://epharmacyapp.appspot.com" />
-		<access origin="http://54.84.121.230:8080" />
+		<access origin="https://www.google.com" />
 		<access origin="https://rpxnow.com" />
-                <access origin="http://widget-cdn.rpxnow.com" />
+        <access origin="http://widget-cdn.rpxnow.com" />
 		        
 		
 	</widget>
