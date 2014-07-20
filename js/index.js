@@ -65,9 +65,6 @@ function checkForDeviceLogin() {
         });
     },1000);
 }
-function clearStorage() {
-    console.log('clearing storage');   
-}
 function forgotPin() {
     //delete from server
     var dataToPost = {
@@ -172,10 +169,12 @@ function listenerSubmitCreatePinForm() {
         },
     ];
     if (validateForm(fields)) {
+        console.log('Create Pin Form Validated, new pin will be...');
+        console.log($('#createPin1').val());
         var dataToPost = {
             device_id:device.uuid,
             user_identifier:window.localStorage.getItem("user_identifier"),
-            device_pin: $('#createPin1').val(),
+            device_pin: $('#createPin1').val()
         };
         var url = getAppParams().server+'/auth_users/phonegap_set_pin';
         $.post( url, dataToPost, function(data) {
