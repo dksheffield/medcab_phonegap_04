@@ -70,6 +70,7 @@
 		<access origin="https://accounts.google.com" />
 		<access origin="https://rpxnow.com" />
         <access origin="http://widget-cdn.rpxnow.com" />
+        <access origin="https://www.google.com" />
 		        
 		
 	</widget>
