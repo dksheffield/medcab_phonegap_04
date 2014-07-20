@@ -176,6 +176,7 @@ function listenerSubmitCreatePinForm() {
             user_identifier:window.localStorage.getItem("user_identifier"),
             device_pin: $('#createPin1').val()
         };
+        console.log('dataToPost: '+dataToPost);
         var url = getAppParams().server+'/auth_users/phonegap_set_pin';
         $.post( url, dataToPost, function(data) {
             showCorrectLoginDiv();
