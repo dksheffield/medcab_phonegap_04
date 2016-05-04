@@ -70,11 +70,10 @@
             <gap:splash src="images/splash/ios_splash_2048w_1536h.png" gap:platform="ios" width="2048" height="1536" />
         <!-- /IOS Splash Screens -->
 	    
-	    <!--<gap:plugin name="com.phonegap.plugins.childbrowser" />-->
-        <plugin name="org.li8.inappbrowser" spec="0.1" source="pgb" />
-		<gap:plugin name="org.apache.cordova.dialogs"/><!--Works Fine-->
-		<gap:plugin name="org.apache.cordova.device"/><!--Works Fine-->
-		<gap:plugin name="org.apache.cordova.vibration"  />
+	    <gap:plugin name="com.phonegap.plugins.childbrowser" source="npm" />
+		<gap:plugin name="org.apache.cordova.dialogs" source="npm" /><!--Works Fine-->
+		<gap:plugin name="org.apache.cordova.device" source="npm" /><!--Works Fine-->
+		<gap:plugin name="org.apache.cordova.vibration" source="npm" />
 		
 		<content src="index.html" />
 		
