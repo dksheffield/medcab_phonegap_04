@@ -70,6 +70,7 @@
             <gap:splash src="images/splash/ios_splash_2048w_1536h.png" gap:platform="ios" width="2048" height="1536" />
         <!-- /IOS Splash Screens -->
 	    
+        <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	    <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
 		<gap:plugin name="org.apache.cordova.dialogs" source="npm" /><!--Works Fine-->
 		<gap:plugin name="org.apache.cordova.device" source="npm" /><!--Works Fine-->
@@ -77,6 +78,6 @@
 		
 		<content src="index.html" />
 		
-        <access origin="*" />
+        <allow-navigation href="*" />
 		        
 	</widget>
