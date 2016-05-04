@@ -216,10 +216,12 @@ function showDiv(divName) {
     if (divName === 'janrain_login_div') {
         var url = getAppParams().server+'/auth_users/login_phonegap?continue_url=/auth_users/phonegap_handler?device_id=' + device.uuid;
         setTimeout(function(){
+            /*
             window.plugins.ChildBrowser.showWebPage(url,
                 { showNavigationBar: false,showLocationBar:false,
                 showAddress:false });
-            //var ref = window.open(url, '_blank', 'location=no');
+            */
+            var ref = window.open(url, '_blank', 'location=no');
         }, 1);
         checkForDeviceLogin();
     }
