@@ -6,11 +6,13 @@ function onDeviceReady() {
     showDiv('loading_div');
 
     //listen for child browser window change
+    /*
     window.plugins.ChildBrowser.onLocationChange = function (url) {
         if (url === getAppParams().server+'/auth_users/phonegap_handler') {
             window.plugins.ChildBrowser.close();
         }
     };
+    */
     getHistoryFromServer(); //get customer history
     
     getPharmaciesFromServer(); //get pharmacies and write them as selects
@@ -38,7 +40,7 @@ function ajaxOnlineCheck() {
         showDiv('offline_div');
     });
 }
-function checkForDeviceLogin() {
+function checkForDeviceLogin(ref) {
     var json_url = getAppParams().server + '/auth_users/phonegap_handler_json?device_id=' + device.uuid;
     setTimeout(function() {
         $.getJSON( json_url, function( data ) {
@@ -57,10 +59,11 @@ function checkForDeviceLogin() {
                 window.localStorage.setItem("userProvider",data.results[0].provider);
                 window.localStorage.setItem("userEmail",data.results[0].email);
                 window.localStorage.setItem("user_identifier",data.results[0].user_identifier);
-                window.plugins.ChildBrowser.close();
+                //window.plugins.ChildBrowser.close();
+                ref.close();
                 showDiv('pincode_login_div');
             } else {
-                checkForDeviceLogin();   
+                checkForDeviceLogin(ref);   
             }
         });
     },1000);
@@ -222,8 +225,13 @@ function showDiv(divName) {
                 showAddress:false });
             */
             var ref = window.open(url, '_blank', 'location=no');
+            ref.addEventListener('loadstop', function(event) {
+              if (event.url === getAppParams().server+'/auth_users/phonegap_handler') {
+                ref.close();
+              } 
+            });
+            checkForDeviceLogin(ref);
         }, 1);
-        checkForDeviceLogin();
     }
     if (divName === 'pincode_login_div') {
         console.log('launched div: pincode_login_div');
