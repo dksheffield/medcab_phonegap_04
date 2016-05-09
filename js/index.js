@@ -5,14 +5,6 @@ function onBodyLoad() {
 function onDeviceReady() {
     showDiv('loading_div');
 
-    //listen for child browser window change
-    /*
-    window.plugins.ChildBrowser.onLocationChange = function (url) {
-        if (url === getAppParams().server+'/auth_users/phonegap_handler') {
-            window.plugins.ChildBrowser.close();
-        }
-    };
-    */
     getHistoryFromServer(); //get customer history
     
     getPharmaciesFromServer(); //get pharmacies and write them as selects
@@ -59,7 +51,6 @@ function checkForDeviceLogin(ref) {
                 window.localStorage.setItem("userProvider",data.results[0].provider);
                 window.localStorage.setItem("userEmail",data.results[0].email);
                 window.localStorage.setItem("user_identifier",data.results[0].user_identifier);
-                //window.plugins.ChildBrowser.close();
                 ref.close();
                 showDiv('pincode_login_div');
             } else {
@@ -219,11 +210,6 @@ function showDiv(divName) {
     if (divName === 'janrain_login_div') {
         var url = getAppParams().server+'/auth_users/login_phonegap?continue_url=/auth_users/phonegap_handler?device_id=' + device.uuid;
         setTimeout(function(){
-            /*
-            window.plugins.ChildBrowser.showWebPage(url,
-                { showNavigationBar: false,showLocationBar:false,
-                showAddress:false });
-            */
             var ref = window.open(url, '_blank', 'location=no');
             ref.addEventListener('loadstop', function(event) {
               if (event.url === getAppParams().server+'/auth_users/phonegap_handler') {
